@@ -7,12 +7,25 @@ import { fetchCryptoData } from "../../helpers/apis";
 
 const Wallet = () => {
   const [cryptos, setCryptos] = useState({});
+  const refreshSeconds = 60;
   let cryptoCurrencies = [];
 
-  useEffect(() => {
+  const getPrices = () => {
     fetchCryptoData().then(response => {
       setCryptos(response.data);
     });
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getPrices();
+    }, refreshSeconds * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    getPrices();
   }, []);
 
   if (!cryptos.length) {
@@ -56,16 +69,9 @@ const Wallet = () => {
     return null;
   }
 
-  const refreshPrices = () => {
-    fetchCryptoData().then(response => {
-      setCryptos(response.data);
-      console.log(response.data);
-    });
-  };
-
   return (
     <>
-      <IconButton onClick={refreshPrices}>
+      <IconButton onClick={getPrices}>
         <RefreshIcon />
       </IconButton>
       <Accordion cryptoCurrencies={cryptoCurrencies} />
