@@ -623,22 +623,36 @@ const dogecoin = (
   </svg>
 );
 
-const filecoin = (
-  <svg enableBackground='new 0 0 40 40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'>
-    <mask id='a' height='40' maskUnits='userSpaceOnUse' width='40' x='0' y='0'>
-      <path clipRule='evenodd' d='m0 0h40v40h-40z' fill='#fff' fillRule='evenodd' />
-    </mask>
-    <g clipRule='evenodd' fillRule='evenodd'>
-      <path
-        d='m20 40c-11 0-20-9-20-20.1.1-11 9-20 20.1-19.9 11 .1 19.9 9 19.9 20.2-.1 10.9-9 19.8-20 19.8'
-        fill='#0090ff'
-        mask='url(#a)'
-      />
-      <path
-        d='m21.9 17.6-.6 3.2 5.7.8-.4 1.5-5.6-.8c-.4 1.3-.6 2.7-1.1 3.9-.5 1.4-1 2.8-1.6 4.1-.8 1.7-2.2 2.9-4.1 3.2-1.1.2-2.3.1-3.2-.6-.3-.2-.6-.6-.6-.9 0-.4.2-.9.5-1.1.2-.1.7 0 1 .1.3.3.6.7.8 1.1.6.8 1.4.9 2.2.3.9-.8 1.4-1.9 1.7-3 .6-2.4 1.2-4.7 1.7-7.1v-.4l-5.3-.8.2-1.5 5.5.8.7-3.1-5.7-.9.2-1.6 5.9.8c.2-.6.3-1.1.5-1.6.5-1.8 1-3.6 2.2-5.2s2.6-2.6 4.7-2.5c.9 0 1.8.3 2.4 1 .1.1.3.3.3.5 0 .4 0 .9-.3 1.2-.4.3-.9.2-1.3-.2-.3-.3-.5-.6-.8-.9-.6-.8-1.5-.9-2.2-.2-.5.5-1 1.2-1.3 1.9-.7 2.1-1.2 4.3-1.9 6.5l5.5.8-.4 1.5z'
-        fill='#fff'
-      />
+const decentraland = (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <defs>
+      <linearGradient id="a" x1="85.4%" x2="14.6%" y1="14.6%" y2="85.4%">
+        <stop offset="0%" stopColor="#FF2D55"/>
+        <stop offset="100%" stopColor="#FFBC5B"/>
+      </linearGradient>
+      <linearGradient id="b" x1="50%" x2="50%" y1="0%" y2="100%">
+        <stop offset="0%" stopColor="#A524B3"/>
+        <stop offset="100%" stopColor="#FF2D55"/>
+      </linearGradient>
+    </defs>
+    <g fill="none" fillRule="evenodd">
+      <circle cx="200" cy="200" r="200" fill="url(#a)"/>
+      <path fill="url(#b)" d="M125.7 0v150h125z" transform="translate(16 130)"/>
+      <path fill="#FFF" d="M16.7 280h125V130z"/>
+      <path fill="#FC9965" d="M40 320a204.8 204.8 0 0 0 40 40h240a204.8 204.8 0 0 0 40-40H40z"/>
+      <path fill="#FF2D55" d="M80 360c33.4 25.1 75 40 120 40s86.6-14.9 120-40H80z"/>
+      <path fill="url(#b)" d="M252.3 0v110H344z" transform="translate(16 210)"/>
+      <path fill="#FFBC5B" d="M268.3 280H16.7A199.1 199.1 0 0 0 40 320h228.4v-40h-.1z"/>
+      <path fill="#FFF" d="M176.7 320h91.6V210z"/>
+      <circle cx="268.3" cy="130" r="50" fill="#FFC95B"/>
+      <circle cx="141.7" cy="75" r="25" fill="#FFC95B"/>
     </g>
+  </svg>
+)
+const filecoin = (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <path fill="#42c1ca" d="M64 37c-3 17-19 29-37 27C10 61-2 45 0 27 3 10 19-2 37 0c17 3 29 19 27 37"/>
+    <path fill="#fefefe" d="M46 13c-6-4-11 5-11 5l-2 8-9-1v2l8 2v2l-1 2-8-1v2l8 1c-2 11-4 14-5 16-1 1-3 2-4-1l-3-1s-2 1 1 3c7 4 11-5 11-5 2-2 3-9 4-11l8 1v-2l-8-1v-2l1-3 8 1v-2l-8-1c2-11 3-12 5-13 0-1 3-2 4 0l2 2c1 0 3-1-1-3"/>
   </svg>
 );
 
@@ -714,15 +728,9 @@ const dai = (
 );
 
 const polygon = (
-  <svg
-    enableBackground='new 0 0 38.4 33.5'
-    viewBox='0 0 38.4 33.5'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <path
-      d='m29 10.2c-.7-.4-1.6-.4-2.4 0l-5.6 3.3-3.8 2.1-5.5 3.3c-.7.4-1.6.4-2.4 0l-4.3-2.6c-.7-.4-1.2-1.2-1.2-2.1v-5c0-.8.4-1.6 1.2-2.1l4.3-2.5c.7-.4 1.6-.4 2.4 0l4.3 2.6c.7.4 1.2 1.2 1.2 2.1v3.3l3.8-2.2v-3.4c0-.8-.4-1.6-1.2-2.1l-8-4.7c-.7-.4-1.6-.4-2.4 0l-8.2 4.8c-.8.4-1.2 1.2-1.2 2v9.4c0 .8.4 1.6 1.2 2.1l8.1 4.7c.7.4 1.6.4 2.4 0l5.5-3.2 3.8-2.2 5.5-3.2c.7-.4 1.6-.4 2.4 0l4.3 2.5c.7.4 1.2 1.2 1.2 2.1v5c0 .8-.4 1.6-1.2 2.1l-4.2 2.5c-.7.4-1.6.4-2.4 0l-4.3-2.5c-.7-.4-1.2-1.2-1.2-2.1v-3.2l-3.8 2.2v3.3c0 .8.4 1.6 1.2 2.1l8.1 4.7c.7.4 1.6.4 2.4 0l8.1-4.7c.7-.4 1.2-1.2 1.2-2.1v-9.5c0-.8-.4-1.6-1.2-2.1z'
-      fill='#8247e5'
-    />
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1024 1024">
+    <circle cx="512" cy="512" r="512" fill="#8247E5"/>
+    <path fill="#fff" d="M681 402c-12-7-28-7-41 0l-96 55-65 36-96 55c-12 7-28 7-42 0l-76-43c-12-7-21-20-21-35v-84c0-15 8-28 21-35l75-41c12-8 28-8 42 0l75 41c12 7 21 20 21 35v55l65-37v-55c0-14-8-28-21-35l-139-78c-12-7-28-7-42 0l-141 78c-13 7-21 21-21 35v158c0 15 8 28 21 35l141 78c13 7 29 7 42 0l96-53 65-37 96-54c12-7 28-7 41 0l75 42c13 7 21 20 21 34v85c0 14-7 27-21 35l-75 42c-12 8-28 8-41 0l-75-41c-12-7-21-20-21-35v-55l-65 37v55c0 14 7 28 21 35l141 78c12 7 28 7 42 0l141-78c12-7 21-21 21-35V517c0-15-8-28-21-35l-143-80Z"/>
   </svg>
 );
 
@@ -1028,8 +1036,8 @@ const aave = (
       y1='900.6861'
       y2='900.0601'
     >
-      <stop offset='0' stop-color='#b6509e' />
-      <stop offset='1' stop-color='#2ebac6' />
+      <stop offset='0' stopColor='#b6509e' />
+      <stop offset='1' stopColor='#2ebac6' />
     </linearGradient>
     <g clip-path='url(#a)'>
       <circle cx='400' cy='400' fill='#a7599d' r='388' />
@@ -1239,6 +1247,7 @@ export const cryptoIcons = {
   binanceUSD,
   pancakeswap,
   algorand,
+  decentraland,
   genericCryptoIcon,
   'bitcoin-sv': bitcoinsv,
   'theta-fuel': thetafuel,
