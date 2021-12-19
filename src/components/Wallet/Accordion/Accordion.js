@@ -98,7 +98,10 @@ const Accordion = ({ cryptoCurrencies }) => {
   };
 
   const moveOwnedCryptosToTop = () => {
-    const cryptosWithQuantity = cryptoCurrencies.filter(crypto => quantities[crypto.displayName] );
+    let cryptosWithQuantity = cryptoCurrencies.filter(crypto => quantities[crypto.displayName] );
+    cryptosWithQuantity.sort((a, b) => {
+      return b.currentValue * quantities[b.displayName].newQuantity - a.currentValue * quantities[a.displayName].newQuantity;
+    });
     const cryptosWithoutQuantity = cryptoCurrencies.filter(crypto => !quantities[crypto.displayName] );
     return [...cryptosWithQuantity, ...cryptosWithoutQuantity];
   };
