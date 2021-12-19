@@ -47,7 +47,7 @@ const Wallet = () => {
           ...cryptoCurrencies,
           {
             symbol,
-            displayName: name,
+            name,
             price: price.price,
             icon: cryptoIcons[slug] ? cryptoIcons[slug] : cryptoIcons.genericCryptoIcon,
             amountOwned: 0,

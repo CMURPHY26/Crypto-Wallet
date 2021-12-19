@@ -92,17 +92,17 @@ const Accordion = ({ cryptoCurrencies }) => {
       ...quantities,
       [name]: {
         newQuantity: Number(newQuantity),
-        price: cryptoCurrencies.find(crypto => crypto.displayName === name)?.price,
+        price: cryptoCurrencies.find(crypto => crypto.name === name)?.price,
       },
     });
   };
 
   const moveOwnedCryptosToTop = () => {
-    let cryptosWithQuantity = cryptoCurrencies.filter(crypto => quantities[crypto.displayName] );
+    let cryptosWithQuantity = cryptoCurrencies.filter(crypto => quantities[crypto.name] );
     cryptosWithQuantity.sort((a, b) => {
-      return b.price * quantities[b.displayName].newQuantity - a.price * quantities[a.displayName].newQuantity;
+      return b.price * quantities[b.name].newQuantity - a.price * quantities[a.name].newQuantity;
     });
-    const cryptosWithoutQuantity = cryptoCurrencies.filter(crypto => !quantities[crypto.displayName] );
+    const cryptosWithoutQuantity = cryptoCurrencies.filter(crypto => !quantities[crypto.name] );
     return [...cryptosWithQuantity, ...cryptosWithoutQuantity];
   };
 
@@ -114,14 +114,14 @@ const Accordion = ({ cryptoCurrencies }) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const onEditIconClick = displayName => {
-    if (showQuantityInput[displayName]) {
+  const onEditIconClick = name => {
+    if (showQuantityInput[name]) {
       setShowQuantityInput({
-        [displayName]: false,
+        [name]: false,
       });
     } else {
       setShowQuantityInput({
-        [displayName]: true,
+        [name]: true,
       });
     }
   };
@@ -168,17 +168,17 @@ const Accordion = ({ cryptoCurrencies }) => {
       )}
       <List className={classes.root}>
         {sortedCryptoCurrencies?.map(crypto => {
-          const { displayName, amountOwned } = crypto;
-          const trueAmountOwned = quantities[displayName]
-            ? quantities[displayName].newQuantity
+          const { name, amountOwned } = crypto;
+          const trueAmountOwned = quantities[name]
+            ? quantities[name].newQuantity
             : amountOwned;
 
           return (
-            <div key={displayName}>
+            <div key={name}>
               <MuiAccordion
                 classes={{ root: classes.accordion }}
-                expanded={expanded === displayName}
-                onChange={handleChange(displayName)}
+                expanded={expanded === name}
+                onChange={handleChange(name)}
                 square
               >
                 <AccordionTop

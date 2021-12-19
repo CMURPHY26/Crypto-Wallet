@@ -17,7 +17,7 @@ const AccordionTop = ({ crypto, classes, trueAmountOwned, showQuantityInput, onC
         collapseIcon: classes.collapseIcon,
       }}
       expandIcon={<ExpandMoreIcon />}
-      id={`${crypto.displayName}-header`}
+      id={`${crypto.name}-header`}
     >
       <ListItem className={classes.listItemTop}>
         {crypto.icon && (
@@ -28,7 +28,7 @@ const AccordionTop = ({ crypto, classes, trueAmountOwned, showQuantityInput, onC
         {crypto.abbr && <Avatar className={classes.avatarLetters}>{crypto.abbr}</Avatar>}
         <>
           <ListItemText
-            primary={crypto.displayName}
+            primary={crypto.name}
             secondary={currencyFormatter.format(crypto.price)}
           />
           <ListItemText
@@ -38,7 +38,7 @@ const AccordionTop = ({ crypto, classes, trueAmountOwned, showQuantityInput, onC
             }).format(trueAmountOwned)}
             secondary={currencyFormatter.format(trueAmountOwned * crypto.price)}
           />
-          {showQuantityInput[crypto.displayName] && (
+          {showQuantityInput[crypto.name] && (
             <TextField
               id='amount-owned-input'
               type='number'
@@ -46,7 +46,7 @@ const AccordionTop = ({ crypto, classes, trueAmountOwned, showQuantityInput, onC
               InputProps={{ inputProps: { min: 0 } }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.amountTextField }}
-              onChange={e => onChangeQuantity(crypto.displayName, e.target.value)}
+              onChange={e => onChangeQuantity(crypto.name, e.target.value)}
             />
           )}
         </>

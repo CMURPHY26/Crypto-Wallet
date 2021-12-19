@@ -59,10 +59,10 @@ const AccordionBottom = ({ crypto, classes, onEditIconClick }) => {
         </ListItem>
         <Divider />
         <div className={classes.buttonsContainer}>
-          <IconButton target="_blank" href={`https://www.coinbase.com/price/${crypto.displayName}`}>
+          <IconButton target="_blank" href={`https://www.coinbase.com/price/${crypto.name}`}>
             <StoreIcon />
           </IconButton>
-          <IconButton onClick={() => onEditIconClick(crypto.displayName)}>
+          <IconButton onClick={() => onEditIconClick(crypto.name)}>
             <EditRoundedIcon />
           </IconButton>
         </div>

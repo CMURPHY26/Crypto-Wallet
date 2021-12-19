@@ -6,7 +6,7 @@ const CryptoSearcher = ({ cryptoCurrencies }) => {
   return (
     <Autocomplete
       options={cryptoCurrencies}
-      getOptionLabel={option => option.displayName}
+      getOptionLabel={option => option.name}
       style={{ width: 300 }}
       renderInput={params => <TextField {...params} variant='outlined' />}
     />
