@@ -144,7 +144,7 @@ const Accordion = ({ cryptoCurrencies }) => {
 
   return (
     <>
-      <IconButton onClick={resetAmounts}>
+      <IconButton onClick={resetAmounts} >
         <DeleteSweepIcon />
       </IconButton>
       {totalWalletValue > 0 && (
