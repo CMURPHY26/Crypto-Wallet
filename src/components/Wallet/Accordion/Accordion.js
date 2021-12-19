@@ -85,6 +85,7 @@ const Accordion = ({ cryptoCurrencies }) => {
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [totalWalletValue, setTotalWalletValue] = useState(0);
+  const [sortedCryptoCurrencies, setSortedCryptoCurrencies] = useState(cryptoCurrencies);
 
   const onChangeQuantity = (name, newQuantity) => {
     setQuantities({
@@ -96,13 +97,11 @@ const Accordion = ({ cryptoCurrencies }) => {
     });
   };
 
-  useEffect(() => {
-    const totalSum = Object.values?.(quantities).reduce(
-      (acc, crypto) => acc + crypto.newQuantity * crypto.currentValue,
-      0
-    );
-    setTotalWalletValue(totalSum);
-  }, [quantities, cryptoCurrencies]);
+  const moveOwnedCryptosToTop = () => {
+    const cryptosWithQuantity = cryptoCurrencies.filter(crypto => quantities[crypto.displayName] );
+    const cryptosWithoutQuantity = cryptoCurrencies.filter(crypto => !quantities[crypto.displayName] );
+    return [...cryptosWithQuantity, ...cryptosWithoutQuantity];
+  };
 
   const resetAmounts = () => {
     setQuantities({});
@@ -111,6 +110,30 @@ const Accordion = ({ cryptoCurrencies }) => {
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  const onEditIconClick = displayName => {
+    if (showQuantityInput[displayName]) {
+      setShowQuantityInput({
+        [displayName]: false,
+      });
+    } else {
+      setShowQuantityInput({
+        [displayName]: true,
+      });
+    }
+  };
+
+  useEffect(() => {
+    setSortedCryptoCurrencies(moveOwnedCryptosToTop());
+  }, [cryptoCurrencies, quantities]);
+
+  useEffect(() => {
+    const totalSum = Object.values?.(quantities).reduce(
+      (acc, crypto) => acc + crypto.newQuantity * crypto.currentValue,
+      0
+    );
+    setTotalWalletValue(totalSum);
+  }, [quantities, cryptoCurrencies]);
 
   useEffect(() => {
     try {
@@ -130,18 +153,6 @@ const Accordion = ({ cryptoCurrencies }) => {
     }
   }, [quantities]);
 
-  const onEditIconClick = displayName => {
-    if (showQuantityInput[displayName]) {
-      setShowQuantityInput({
-        [displayName]: false,
-      });
-    } else {
-      setShowQuantityInput({
-        [displayName]: true,
-      });
-    }
-  };
-
   return (
     <>
       <IconButton onClick={resetAmounts} >
@@ -153,7 +164,7 @@ const Accordion = ({ cryptoCurrencies }) => {
         </Typography>
       )}
       <List className={classes.root}>
-        {cryptoCurrencies?.map(crypto => {
+        {sortedCryptoCurrencies?.map(crypto => {
           const { displayName, amountOwned } = crypto;
           const trueAmountOwned = quantities[displayName]
             ? quantities[displayName].newQuantity

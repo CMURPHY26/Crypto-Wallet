@@ -7,7 +7,7 @@ import { fetchCryptoData } from "../../helpers/apis";
 
 const Wallet = () => {
   const [cryptos, setCryptos] = useState({});
-  const refreshSeconds = 60;
+  const refreshSeconds = 600; // put high number to prevent hitting limit
   let cryptoCurrencies = [];
 
   const getPrices = () => {
