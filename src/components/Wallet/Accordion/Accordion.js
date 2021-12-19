@@ -81,31 +81,31 @@ const useStyles = makeStyles(theme => ({
 
 const Accordion = ({ cryptoCurrencies }) => {
   const classes = useStyles();
-  const [changedAmounts, setChangedAmounts] = useState({});
+  const [amounts, setAmounts] = useState({});
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [totalWalletValue, setTotalWalletValue] = useState(0);
 
-  const onChangeAmount = (name, newAmount, totalValue) => {
-    setChangedAmounts({
-      ...changedAmounts,
+  const onChangeAmount = (name, newAmount) => {
+    setAmounts({
+      ...amounts,
       [name]: {
-        newAmount,
-        totalValue,
+        newAmount: Number(newAmount),
+        currentValue: cryptoCurrencies.find(crypto => crypto.displayName === name)?.currentValue,
       },
     });
   };
 
   useEffect(() => {
-    if (changedAmounts !== {}) {
-      const totalSum = Object.values(changedAmounts).reduce((s, a) => s + a.totalValue, 0);
-
-      setTotalWalletValue(totalSum);
-    }
-  }, [changedAmounts]);
+    const totalSum = Object.values?.(amounts).reduce(
+      (acc, crypto) => acc + crypto.newAmount * crypto.currentValue,
+      0
+    );
+    setTotalWalletValue(totalSum);
+  }, [amounts, cryptoCurrencies]);
 
   const resetAmounts = () => {
-    setChangedAmounts({});
+    setAmounts({});
   };
 
   const handleChange = panel => (event, isExpanded) => {
@@ -114,8 +114,8 @@ const Accordion = ({ cryptoCurrencies }) => {
 
   useEffect(() => {
     try {
-      if ("changedAmounts" in localStorage) {
-        setChangedAmounts(JSON.parse(localStorage.getItem("changedAmounts")));
+      if ("amounts" in localStorage) {
+        setAmounts(JSON.parse(localStorage.getItem("amounts")));
       }
     } catch (e) {
       console.log(e);
@@ -124,11 +124,11 @@ const Accordion = ({ cryptoCurrencies }) => {
 
   useEffect(() => {
     try {
-      localStorage.setItem("changedAmounts", JSON.stringify(changedAmounts));
+      localStorage.setItem("amounts", JSON.stringify(amounts));
     } catch (e) {
       console.log(e);
     }
-  }, [changedAmounts]);
+  }, [amounts]);
 
   const onEditIconClick = displayName => {
     if (showQuantityInput[displayName]) {
@@ -155,8 +155,8 @@ const Accordion = ({ cryptoCurrencies }) => {
       <List className={classes.root}>
         {cryptoCurrencies?.map(crypto => {
           const { displayName, amountOwned } = crypto;
-          const trueAmountOwned = changedAmounts[displayName]
-            ? changedAmounts[displayName].newAmount
+          const trueAmountOwned = amounts[displayName]
+            ? amounts[displayName].newAmount
             : amountOwned;
 
           return (

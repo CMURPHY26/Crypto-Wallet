@@ -46,13 +46,7 @@ const AccordionTop = ({ crypto, classes, trueAmountOwned, showQuantityInput, onC
               InputProps={{ inputProps: { min: 0 } }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.amountTextField }}
-              onChange={e =>
-                onChangeAmount(
-                  crypto.displayName,
-                  e.target.value,
-                  e.target.value * crypto.currentValue
-                )
-              }
+              onChange={e => onChangeAmount(crypto.displayName, e.target.value)}
             />
           )}
         </>
