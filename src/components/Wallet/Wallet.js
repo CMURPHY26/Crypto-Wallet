@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import IconButton from "@material-ui/core/IconButton";
-import RefreshIcon from "@material-ui/icons/Refresh";
-import Accordion from "./Accordion/Accordion";
-import { cryptoIcons } from "../../helpers/icons";
-import { fetchCryptoData } from "../../helpers/apis";
+import React, { useEffect, useState } from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import RefreshIcon from '@material-ui/icons/Refresh';
+import Accordion from './Accordion/Accordion';
+import { cryptoIcons } from '../../helpers/icons';
+import { fetchCryptoData } from '../../helpers/apis';
 
 const Wallet = () => {
   const [cryptos, setCryptos] = useState({});
@@ -33,13 +33,26 @@ const Wallet = () => {
   }
 
   cryptos.map(crypto => {
-    const { cmc_rank, name, quote, slug, circulating_supply, max_supply, symbol } = crypto;
+    const {
+      cmc_rank,
+      name,
+      quote,
+      slug,
+      circulating_supply,
+      max_supply,
+      symbol,
+    } = crypto;
     const price = quote.USD;
     const stablecoins = ['USDT', 'USDC', 'BUSD', 'DAI', 'UST'];
     const shitcoins = ['SHIB', 'DOGE', 'VET'];
-    const boringCoins = ['AVAX', 'LUNA', 'CRO', 'HBAR', 'AXS', 'NEAR', 'FTT']
+    const boringCoins = ['AVAX', 'LUNA', 'CRO', 'HBAR', 'AXS', 'NEAR', 'FTT'];
     const bitcoinDuplicates = ['WBTC'];
-    const excludedCoins = [...stablecoins, ...shitcoins, ...boringCoins, ...bitcoinDuplicates];
+    const excludedCoins = [
+      ...stablecoins,
+      ...shitcoins,
+      ...boringCoins,
+      ...bitcoinDuplicates,
+    ];
 
     if (!excludedCoins.includes(symbol)) {
       cmc_rank < 35 &&
@@ -49,7 +62,9 @@ const Wallet = () => {
             symbol,
             name,
             price: price.price,
-            icon: cryptoIcons[slug] ? cryptoIcons[slug] : cryptoIcons.genericCryptoIcon,
+            icon: cryptoIcons[slug]
+              ? cryptoIcons[slug]
+              : cryptoIcons.genericCryptoIcon,
             originalQuantity: 0,
             rank: cmc_rank,
             extraDetails: {

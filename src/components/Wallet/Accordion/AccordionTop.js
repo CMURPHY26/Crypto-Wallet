@@ -8,7 +8,13 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
 import { currencyFormatter } from '../../../helpers/formatters';
 
-const AccordionTop = ({ crypto, classes, quantityOwned, showQuantityInput, onChangeQuantity }) => {
+const AccordionTop = ({
+  crypto,
+  classes,
+  quantityOwned,
+  showQuantityInput,
+  onChangeQuantity,
+}) => {
   return (
     <AccordionSummary
       classes={{
@@ -25,7 +31,9 @@ const AccordionTop = ({ crypto, classes, quantityOwned, showQuantityInput, onCha
             <Icon className={classes.icon}>{crypto.icon}</Icon>
           </Avatar>
         )}
-        {crypto.abbr && <Avatar className={classes.avatarLetters}>{crypto.abbr}</Avatar>}
+        {crypto.abbr && (
+          <Avatar className={classes.avatarLetters}>{crypto.abbr}</Avatar>
+        )}
         <>
           <ListItemText
             primary={crypto.name}

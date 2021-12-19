@@ -15,7 +15,12 @@ const cardano = (
 );
 
 const chainlink = (
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 37.8 43.6' height='38px' width='38px'>
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    viewBox='0 0 37.8 43.6'
+    height='38px'
+    width='38px'
+  >
     <g data-name='Layer 2'>
       <path
         fill='#2a5ada'
@@ -455,7 +460,10 @@ const dogecoin = (
         d='m519.42 636.08s-6.37 3.79-9.71 18c-3.34 14.56 3 32.31 6.67 37.92s12 20.94 29.28 21.7a32.1 32.1 0 0 0 12.44-2.58 78.7 78.7 0 0 0 16.84-10.47c7.44-5.61 13.5-10.46 12.74-10.92-1.82-.76-45.81-37.17-45.81-37.17l-16.54-18.46-5.92 2z'
         fill='#585136'
       />
-      <path d='m561 696.45s8.95-.75 14.26-4.09-31.1-39.44-31.1-39.44l2.58 39z' fill='#453a25' />
+      <path
+        d='m561 696.45s8.95-.75 14.26-4.09-31.1-39.44-31.1-39.44l2.58 39z'
+        fill='#453a25'
+      />
       <path
         d='m522.3 633.34s-4.55 8.65-4.55 10.93c-.76 7.43 1.52 30.79 3.34 38.22 1.82 7.89 11.68 19.87 24.43 19.87 7.88 0 18.81-4.85 18.81-6.06 0-1.52-11.23-3-14.26-8.65-1.82-3-2.58-10.46-3-18-.3-4.85-.3-10.16 1.52-12 4.1-4.55 4.85-17.6 4.85-17.6l14.56-27.05h-19.15l-22.91 14.26z'
         fill='#84754b'
@@ -624,35 +632,58 @@ const dogecoin = (
 );
 
 const decentraland = (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'>
     <defs>
-      <linearGradient id="a" x1="85.4%" x2="14.6%" y1="14.6%" y2="85.4%">
-        <stop offset="0%" stopColor="#FF2D55"/>
-        <stop offset="100%" stopColor="#FFBC5B"/>
+      <linearGradient id='a' x1='85.4%' x2='14.6%' y1='14.6%' y2='85.4%'>
+        <stop offset='0%' stopColor='#FF2D55' />
+        <stop offset='100%' stopColor='#FFBC5B' />
       </linearGradient>
-      <linearGradient id="b" x1="50%" x2="50%" y1="0%" y2="100%">
-        <stop offset="0%" stopColor="#A524B3"/>
-        <stop offset="100%" stopColor="#FF2D55"/>
+      <linearGradient id='b' x1='50%' x2='50%' y1='0%' y2='100%'>
+        <stop offset='0%' stopColor='#A524B3' />
+        <stop offset='100%' stopColor='#FF2D55' />
       </linearGradient>
     </defs>
-    <g fill="none" fillRule="evenodd">
-      <circle cx="200" cy="200" r="200" fill="url(#a)"/>
-      <path fill="url(#b)" d="M125.7 0v150h125z" transform="translate(16 130)"/>
-      <path fill="#FFF" d="M16.7 280h125V130z"/>
-      <path fill="#FC9965" d="M40 320a204.8 204.8 0 0 0 40 40h240a204.8 204.8 0 0 0 40-40H40z"/>
-      <path fill="#FF2D55" d="M80 360c33.4 25.1 75 40 120 40s86.6-14.9 120-40H80z"/>
-      <path fill="url(#b)" d="M252.3 0v110H344z" transform="translate(16 210)"/>
-      <path fill="#FFBC5B" d="M268.3 280H16.7A199.1 199.1 0 0 0 40 320h228.4v-40h-.1z"/>
-      <path fill="#FFF" d="M176.7 320h91.6V210z"/>
-      <circle cx="268.3" cy="130" r="50" fill="#FFC95B"/>
-      <circle cx="141.7" cy="75" r="25" fill="#FFC95B"/>
+    <g fill='none' fillRule='evenodd'>
+      <circle cx='200' cy='200' r='200' fill='url(#a)' />
+      <path
+        fill='url(#b)'
+        d='M125.7 0v150h125z'
+        transform='translate(16 130)'
+      />
+      <path fill='#FFF' d='M16.7 280h125V130z' />
+      <path
+        fill='#FC9965'
+        d='M40 320a204.8 204.8 0 0 0 40 40h240a204.8 204.8 0 0 0 40-40H40z'
+      />
+      <path
+        fill='#FF2D55'
+        d='M80 360c33.4 25.1 75 40 120 40s86.6-14.9 120-40H80z'
+      />
+      <path
+        fill='url(#b)'
+        d='M252.3 0v110H344z'
+        transform='translate(16 210)'
+      />
+      <path
+        fill='#FFBC5B'
+        d='M268.3 280H16.7A199.1 199.1 0 0 0 40 320h228.4v-40h-.1z'
+      />
+      <path fill='#FFF' d='M176.7 320h91.6V210z' />
+      <circle cx='268.3' cy='130' r='50' fill='#FFC95B' />
+      <circle cx='141.7' cy='75' r='25' fill='#FFC95B' />
     </g>
   </svg>
-)
+);
 const filecoin = (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-    <path fill="#42c1ca" d="M64 37c-3 17-19 29-37 27C10 61-2 45 0 27 3 10 19-2 37 0c17 3 29 19 27 37"/>
-    <path fill="#fefefe" d="M46 13c-6-4-11 5-11 5l-2 8-9-1v2l8 2v2l-1 2-8-1v2l8 1c-2 11-4 14-5 16-1 1-3 2-4-1l-3-1s-2 1 1 3c7 4 11-5 11-5 2-2 3-9 4-11l8 1v-2l-8-1v-2l1-3 8 1v-2l-8-1c2-11 3-12 5-13 0-1 3-2 4 0l2 2c1 0 3-1-1-3"/>
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
+    <path
+      fill='#42c1ca'
+      d='M64 37c-3 17-19 29-37 27C10 61-2 45 0 27 3 10 19-2 37 0c17 3 29 19 27 37'
+    />
+    <path
+      fill='#fefefe'
+      d='M46 13c-6-4-11 5-11 5l-2 8-9-1v2l8 2v2l-1 2-8-1v2l8 1c-2 11-4 14-5 16-1 1-3 2-4-1l-3-1s-2 1 1 3c7 4 11-5 11-5 2-2 3-9 4-11l8 1v-2l-8-1v-2l1-3 8 1v-2l-8-1c2-11 3-12 5-13 0-1 3-2 4 0l2 2c1 0 3-1-1-3'
+    />
   </svg>
 );
 
@@ -728,9 +759,12 @@ const dai = (
 );
 
 const polygon = (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1024 1024">
-    <circle cx="512" cy="512" r="512" fill="#8247E5"/>
-    <path fill="#fff" d="M681 402c-12-7-28-7-41 0l-96 55-65 36-96 55c-12 7-28 7-42 0l-76-43c-12-7-21-20-21-35v-84c0-15 8-28 21-35l75-41c12-8 28-8 42 0l75 41c12 7 21 20 21 35v55l65-37v-55c0-14-8-28-21-35l-139-78c-12-7-28-7-42 0l-141 78c-13 7-21 21-21 35v158c0 15 8 28 21 35l141 78c13 7 29 7 42 0l96-53 65-37 96-54c12-7 28-7 41 0l75 42c13 7 21 20 21 34v85c0 14-7 27-21 35l-75 42c-12 8-28 8-41 0l-75-41c-12-7-21-20-21-35v-55l-65 37v55c0 14 7 28 21 35l141 78c12 7 28 7 42 0l141-78c12-7 21-21 21-35V517c0-15-8-28-21-35l-143-80Z"/>
+  <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 1024 1024'>
+    <circle cx='512' cy='512' r='512' fill='#8247E5' />
+    <path
+      fill='#fff'
+      d='M681 402c-12-7-28-7-41 0l-96 55-65 36-96 55c-12 7-28 7-42 0l-76-43c-12-7-21-20-21-35v-84c0-15 8-28 21-35l75-41c12-8 28-8 42 0l75 41c12 7 21 20 21 35v55l65-37v-55c0-14-8-28-21-35l-139-78c-12-7-28-7-42 0l-141 78c-13 7-21 21-21 35v158c0 15 8 28 21 35l141 78c13 7 29 7 42 0l96-53 65-37 96-54c12-7 28-7 41 0l75 42c13 7 21 20 21 34v85c0 14-7 27-21 35l-75 42c-12 8-28 8-41 0l-75-41c-12-7-21-20-21-35v-55l-65 37v55c0 14 7 28 21 35l141 78c12 7 28 7 42 0l141-78c12-7 21-21 21-35V517c0-15-8-28-21-35l-143-80Z'
+    />
   </svg>
 );
 
@@ -818,7 +852,11 @@ const stellar = (
 );
 
 const sushiswap = (
-  <svg enableBackground='new 0 0 24 24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+  <svg
+    enableBackground='new 0 0 24 24'
+    viewBox='0 0 24 24'
+    xmlns='http://www.w3.org/2000/svg'
+  >
     <clipPath id='a'>
       <path d='m0 0h24v24h-24z' />
     </clipPath>
@@ -933,8 +971,19 @@ const usdc = (
 );
 
 const bitcoincash = (
-  <svg enableBackground='new 0 0 32 32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'>
-    <circle clipRule='evenodd' cx='16' cy='16' fill='#8dc351' fillRule='evenodd' r='16' />
+  <svg
+    enableBackground='new 0 0 32 32'
+    viewBox='0 0 32 32'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <circle
+      clipRule='evenodd'
+      cx='16'
+      cy='16'
+      fill='#8dc351'
+      fillRule='evenodd'
+      r='16'
+    />
     <path
       d='m21.2 10.5c-.8-2-2.7-2.1-5-1.7l-.8-2.8-1.7.5.8 2.7c-.4.1-.9.3-1.4.4l-.8-2.8-1.7.5.8 2.8c-.4.1-.7.2-1.1.3l-2.3.8.5 1.8s1.3-.4 1.2-.4c.7-.2 1 .1 1.2.5l.9 3.2h.2l-.2.1 1.3 4.5c0 .2 0 .6-.5.8 0 0-1.2.4-1.2.4l.2 2.1 2.2-.6c.4-.1.8-.2 1.2-.3l.8 2.8 1.7-.5-.8-2.8c.5-.1.9-.2 1.4-.4l.8 2.8 1.7-.5-.8-2.8c2.8-1 4.6-2.3 4.1-5.1-.4-2.2-1.7-2.9-3.5-2.8 1-1 1.4-2 .8-3.5zm-.6 6.8c.6 2.1-3.1 2.9-4.3 3.3l-1.1-3.8c1.2-.3 4.7-1.7 5.4.5zm-2.4-5.1c.6 1.9-2.5 2.6-3.5 2.9l-1-3.4c1-.3 4-1.5 4.5.5z'
       fill='#fff'
@@ -952,7 +1001,12 @@ const binanceCoin = (
 );
 
 const algorand = (
-  <svg height='32px' width='38px' viewBox='0 0 113 113.4' xmlns='http://www.w3.org/2000/svg'>
+  <svg
+    height='32px'
+    width='38px'
+    viewBox='0 0 113 113.4'
+    xmlns='http://www.w3.org/2000/svg'
+  >
     <path d='m19.6 113.4 16.4-28.4 16.4-28.3 16.3-28.4 2.7-4.5 1.2 4.5 5 18.7-5.6 9.7-16.4 28.3-16.3 28.4h19.6l16.4-28.4 8.5-14.7 4 14.7 7.6 28.4h17.6l-7.6-28.4-7.6-28.3-2-7.3 12.2-21.1h-17.8l-.6-2.1-6.2-23.2-.8-3h-17.1l-.4.6-16 27.7-16.4 28.4-16.3 28.3-16.4 28.4z' />
   </svg>
 );
@@ -1023,7 +1077,11 @@ const xrp = (
 );
 
 const aave = (
-  <svg enable-background='new 0 0 800 800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'>
+  <svg
+    enable-background='new 0 0 800 800'
+    viewBox='0 0 800 800'
+    xmlns='http://www.w3.org/2000/svg'
+  >
     <clipPath id='a'>
       <path d='m0 0h800v800h-800z' />
     </clipPath>
@@ -1068,7 +1126,14 @@ const thetafuel = (
       y1='500'
       y2='500'
     />
-    <linearGradient id='c' gradientUnits='userSpaceOnUse' x1='349' x2='652' y1='622' y2='622' />
+    <linearGradient
+      id='c'
+      gradientUnits='userSpaceOnUse'
+      x1='349'
+      x2='652'
+      y1='622'
+      y2='622'
+    />
     <path
       d='m500 0c276.1 0 500 223.9 500 500s-223.9 500-500 500-500-223.9-500-500 223.9-500 500-500z'
       fill='#e66d30'
@@ -1144,13 +1209,23 @@ const theta = (
 );
 
 const eos = (
-  <svg height='38px' width='38px' viewBox='0 0 33.2 50' xmlns='http://www.w3.org/2000/svg'>
+  <svg
+    height='38px'
+    width='38px'
+    viewBox='0 0 33.2 50'
+    xmlns='http://www.w3.org/2000/svg'
+  >
     <path d='m16.6 0-11.7 16.1-4.9 23.8 16.6 10.1 16.6-10.1-5-23.9zm-13.9 38.8 3.7-18.1 8.4 25.5zm4.9-22.2 9-12.4 9 12.4-9 27.2zm10.7 29.6 8.4-25.5 3.7 18.1z' />
   </svg>
 );
 
 const ethereumClassic = (
-  <svg viewBox='0 0 1543 2499.2' height='38px' width='38px' xmlns='http://www.w3.org/2000/svg'>
+  <svg
+    viewBox='0 0 1543 2499.2'
+    height='38px'
+    width='38px'
+    xmlns='http://www.w3.org/2000/svg'
+  >
     <path
       d='m0 1361.05c271.87 144.38 555.56 295.51 774.67 412.45l768.33-412.45c-278.2 413.29-510 757.36-768.33 1138.15-258.79-379.95-544.59-799.2-774.67-1138.15zm29.55-114 745.96-398.05 736.25 395.14-735.83 398.49zm745.12-525.58-774.67 407.81 771.29-1129.28 771.71 1131.81z'
       fill='#3ab83a'
@@ -1159,7 +1234,10 @@ const ethereumClassic = (
       d='m774.67 1773.5 768.33-412.45c-278.2 413.29-768.33 1138.15-768.33 1138.15zm.84-924.5 736.25 395.14-735.83 398.49zm-.84-127.5-3.38-721.5 771.71 1131.81z'
       fill='#0b8311'
     />
-    <path d='m29.55 1247.06 746 61.22 736.25-63.75-735.87 398.52z' fill='#0b8311' />
+    <path
+      d='m29.55 1247.06 746 61.22 736.25-63.75-735.87 398.52z'
+      fill='#0b8311'
+    />
     <path d='m775.51 1308.28 736.25-63.75-735.83 398.52z' fill='#146714' />
   </svg>
 );
@@ -1174,14 +1252,21 @@ const tron = (
 );
 
 const pancakeswap = (
-  <svg enableBackground='new 0 0 31.7 32' viewBox='0 0 31.7 32' xmlns='http://www.w3.org/2000/svg'>
+  <svg
+    enableBackground='new 0 0 31.7 32'
+    viewBox='0 0 31.7 32'
+    xmlns='http://www.w3.org/2000/svg'
+  >
     <path
       clipRule='evenodd'
       d='m5.7 5c-.5-2.6 1.5-5 4.1-5 2.3 0 4.2 1.9 4.2 4.2v5.2c.6 0 1.2-.1 1.8-.1s1.1 0 1.7.1v-5.2c0-2.3 1.9-4.2 4.2-4.2 2.6 0 4.6 2.4 4.2 5l-1.1 6.1c3.9 1.7 6.9 4.7 6.9 8.4v2.3c0 3.1-2 5.7-4.9 7.4-2.9 1.8-6.7 2.8-11 2.8s-8.1-1-11-2.8c-2.8-1.7-4.8-4.3-4.8-7.4v-2.3c0-3.7 2.9-6.7 6.8-8.4zm17.6 6.9 1.3-7.2c.3-1.8-1-3.5-2.9-3.5-1.6 0-2.9 1.3-2.9 2.9v6.6c-.4-.1-.9-.1-1.3-.1-.6 0-1.1-.1-1.7-.1s-1.2 0-1.8.1c-.4 0-.9.1-1.3.1v-6.5c0-1.6-1.3-2.9-2.9-2.9-1.8 0-3.2 1.7-2.8 3.5l1.3 7.2c-4.2 1.6-7 4.4-7 7.6v2.3c0 4.9 6.5 8.9 14.5 8.9s14.5-4 14.5-8.9v-2.3c.1-3.3-2.7-6.1-7-7.7z'
       fill='#633001'
       fillRule='evenodd'
     />
-    <path d='m30.4 21.8c0 4.9-6.5 8.9-14.5 8.9s-14.5-4-14.5-8.9v-2.3h29.1v2.3z' fill='#fedc90' />
+    <path
+      d='m30.4 21.8c0 4.9-6.5 8.9-14.5 8.9s-14.5-4-14.5-8.9v-2.3h29.1v2.3z'
+      fill='#fedc90'
+    />
     <path
       clipRule='evenodd'
       d='m7 4.8c-.4-1.8 1-3.5 2.8-3.5 1.6 0 2.9 1.3 2.9 2.9v6.6c1-.1 2-.2 3.1-.2 1 0 2 .1 3 .2v-6.6c0-1.6 1.3-2.9 2.9-2.9 1.8 0 3.2 1.7 2.9 3.5l-1.3 7.2c4.2 1.6 7.1 4.4 7.1 7.6 0 4.9-6.5 8.9-14.5 8.9s-14.5-4-14.5-8.9c0-3.2 2.8-6 7-7.6z'
@@ -1214,7 +1299,10 @@ const bitcoinsv = (
 
 const neo = (
   <svg viewBox='0 0 333.1 368.5' xmlns='http://www.w3.org/2000/svg'>
-    <path d='m0 64.6v246.5l160 57.4v-248.5l173.1-63.8-157.1-56.2z' fill='#00e599' />
+    <path
+      d='m0 64.6v246.5l160 57.4v-248.5l173.1-63.8-157.1-56.2z'
+      fill='#00e599'
+    />
     <path d='m173.1 127.1v134.8l160 57.4v-251.4z' fill='#00af92' />
   </svg>
 );

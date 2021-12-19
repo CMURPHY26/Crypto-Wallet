@@ -1,13 +1,16 @@
-import { IconButton, Typography } from "@material-ui/core";
-import { default as MuiAccordion } from "@material-ui/core/Accordion";
-import List from "@material-ui/core/List";
-import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
-import React, { useEffect, useState } from "react";
-import { currencyFormatter } from "../../../helpers/formatters";
-import { useAccordionStyles } from "./styles";
-import AccordionBottom from "./AccordionBottom";
-import AccordionTop from "./AccordionTop";
-import { handleItemInLocalStorage, setItemInLocalStorage } from "../../../helpers/utils";
+import { IconButton, Typography } from '@material-ui/core';
+import { default as MuiAccordion } from '@material-ui/core/Accordion';
+import List from '@material-ui/core/List';
+import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import React, { useEffect, useState } from 'react';
+import { currencyFormatter } from '../../../helpers/formatters';
+import { useAccordionStyles } from './styles';
+import AccordionBottom from './AccordionBottom';
+import AccordionTop from './AccordionTop';
+import {
+  handleItemInLocalStorage,
+  setItemInLocalStorage,
+} from '../../../helpers/utils';
 
 const Accordion = ({ cryptoCurrencies }) => {
   const classes = useAccordionStyles();
@@ -15,7 +18,8 @@ const Accordion = ({ cryptoCurrencies }) => {
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [totalWalletValue, setTotalWalletValue] = useState(0);
-  const [sortedCryptoCurrencies, setSortedCryptoCurrencies] = useState(cryptoCurrencies);
+  const [sortedCryptoCurrencies, setSortedCryptoCurrencies] =
+    useState(cryptoCurrencies);
 
   const onChangeQuantity = (name, newQuantity) => {
     setQuantities({
@@ -28,11 +32,18 @@ const Accordion = ({ cryptoCurrencies }) => {
   };
 
   const moveOwnedCryptosToTop = () => {
-    let cryptosWithQuantity = cryptoCurrencies.filter(crypto => quantities[crypto.name]);
+    let cryptosWithQuantity = cryptoCurrencies.filter(
+      crypto => quantities[crypto.name]
+    );
     cryptosWithQuantity.sort((a, b) => {
-      return b.price * quantities[b.name].newQuantity - a.price * quantities[a.name].newQuantity;
+      return (
+        b.price * quantities[b.name].newQuantity -
+        a.price * quantities[a.name].newQuantity
+      );
     });
-    const cryptosWithoutQuantity = cryptoCurrencies.filter(crypto => !quantities[crypto.name]);
+    const cryptosWithoutQuantity = cryptoCurrencies.filter(
+      crypto => !quantities[crypto.name]
+    );
     return [...cryptosWithQuantity, ...cryptosWithoutQuantity];
   };
 
@@ -55,11 +66,11 @@ const Accordion = ({ cryptoCurrencies }) => {
   }, [cryptoCurrencies, quantities]);
 
   useEffect(() => {
-    handleItemInLocalStorage(setQuantities, "quantities");
+    handleItemInLocalStorage(setQuantities, 'quantities');
   }, []);
 
   useEffect(() => {
-    setItemInLocalStorage("quantities", quantities);
+    setItemInLocalStorage('quantities', quantities);
   }, [quantities]);
 
   useEffect(() => {
@@ -83,7 +94,9 @@ const Accordion = ({ cryptoCurrencies }) => {
       <List className={classes.root}>
         {sortedCryptoCurrencies?.map(crypto => {
           const { name, originalQuantity } = crypto;
-          const quantityOwned = quantities[name] ? quantities[name].newQuantity : originalQuantity;
+          const quantityOwned = quantities[name]
+            ? quantities[name].newQuantity
+            : originalQuantity;
 
           return (
             <div key={name}>

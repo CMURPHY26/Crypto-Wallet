@@ -1,19 +1,19 @@
-import { darken, makeStyles } from "@material-ui/core/styles";
+import { darken, makeStyles } from '@material-ui/core/styles';
 
 export const useAccordionStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 700,
-    margin: "0 auto",
+    margin: '0 auto',
     backgroundColor: theme.palette.background.paper,
   },
   avatar: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     marginRight: 16,
   },
   listItemTop: {},
   originalQuantity: {
-    textAlign: "right",
+    textAlign: 'right',
   },
   icon: {
     width: 40,
@@ -33,34 +33,34 @@ export const useAccordionStyles = makeStyles(theme => ({
     opacity: 0,
     width: 17,
     height: 17,
-    position: "absolute",
+    position: 'absolute',
     top: 5,
     right: 5,
     fill: theme.palette.grey,
-    "&:hover": {
+    '&:hover': {
       opacity: 1,
-      transition: "opacity 0.5s",
+      transition: 'opacity 0.5s',
     },
   },
   summary: {
     margin: 0,
   },
   detailsList: {
-    width: "100%",
+    width: '100%',
   },
   accordion: {
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     borderRadius: 0,
-    "&:hover": {
+    '&:hover': {
       backgroundColor: darken(theme.palette.background.paper, 0.07),
-      cursor: "pointer",
-      transition: "background-color ease .25s",
+      cursor: 'pointer',
+      transition: 'background-color ease .25s',
     },
   },
   totalWalletValue: {
     maxWidth: 700,
-    margin: "0 auto",
-    textAlign: "right",
+    margin: '0 auto',
+    textAlign: 'right',
   },
   buttonsContainer: {
     marginTop: 20,
