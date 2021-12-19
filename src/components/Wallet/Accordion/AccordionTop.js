@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
 import { currencyFormatter } from '../../../helpers/formatters';
 
-const AccordionTop = ({ crypto, classes, trueAmountOwned, showQuantityInput, onChangeAmount }) => {
+const AccordionTop = ({ crypto, classes, trueAmountOwned, showQuantityInput, onChangeQuantity }) => {
   return (
     <AccordionSummary
       classes={{
@@ -46,7 +46,7 @@ const AccordionTop = ({ crypto, classes, trueAmountOwned, showQuantityInput, onC
               InputProps={{ inputProps: { min: 0 } }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.amountTextField }}
-              onChange={e => onChangeAmount(crypto.displayName, e.target.value)}
+              onChange={e => onChangeQuantity(crypto.displayName, e.target.value)}
             />
           )}
         </>
