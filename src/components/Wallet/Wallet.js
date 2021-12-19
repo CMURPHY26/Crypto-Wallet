@@ -60,9 +60,7 @@ const Wallet = () => {
             symbol,
             name,
             price: price.price,
-            icon: cryptoIcons[slug]
-              ? cryptoIcons[slug]
-              : cryptoIcons.genericCryptoIcon,
+            icon: cryptoIcons?.[slug] ?? cryptoIcons.genericCryptoIcon,
             originalQuantity: 0,
             rank: cmc_rank,
             extraDetails: {

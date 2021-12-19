@@ -94,9 +94,8 @@ const Accordion = ({ cryptoCurrencies }) => {
       <List className={classes.root}>
         {sortedCryptoCurrencies?.map(crypto => {
           const { name, originalQuantity } = crypto;
-          const quantityOwned = quantities[name]
-            ? quantities[name].newQuantity
-            : originalQuantity;
+          const quantityOwned =
+            quantities[name]?.newQuantity ?? originalQuantity;
 
           return (
             <div key={name}>
