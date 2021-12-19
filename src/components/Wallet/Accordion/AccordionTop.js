@@ -29,14 +29,14 @@ const AccordionTop = ({ crypto, classes, trueAmountOwned, showQuantityInput, onC
         <>
           <ListItemText
             primary={crypto.displayName}
-            secondary={currencyFormatter.format(crypto.currentValue)}
+            secondary={currencyFormatter.format(crypto.price)}
           />
           <ListItemText
             className={classes.amountOwned}
             primary={new Intl.NumberFormat('en-US', {
               maximumSignificantDigits: 7,
             }).format(trueAmountOwned)}
-            secondary={currencyFormatter.format(trueAmountOwned * crypto.currentValue)}
+            secondary={currencyFormatter.format(trueAmountOwned * crypto.price)}
           />
           {showQuantityInput[crypto.displayName] && (
             <TextField

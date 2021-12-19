@@ -36,18 +36,19 @@ const Wallet = () => {
     const { cmc_rank, name, quote, slug, circulating_supply, max_supply, symbol } = crypto;
     const price = quote.USD;
     const stablecoins = ['USDT', 'USDC', 'BUSD', 'DAI', 'UST'];
-    const shitcoins = ['SHIB', 'CRO', 'KLAY', 'HBAR'];
-    const bitcoinDuplicates = ['WBTC', 'BTCB'];
-    const excludedCoins = [...stablecoins, ...shitcoins, ...bitcoinDuplicates];
+    const shitcoins = ['SHIB', 'DOGE', 'VET'];
+    const boringCoins = ['AVAX', 'LUNA', 'CRO', 'HBAR', 'AXS', 'NEAR', 'FTT']
+    const bitcoinDuplicates = ['WBTC'];
+    const excludedCoins = [...stablecoins, ...shitcoins, ...boringCoins, ...bitcoinDuplicates];
 
     if (!excludedCoins.includes(symbol)) {
-      cmc_rank < 40 &&
+      cmc_rank < 35 &&
         (cryptoCurrencies = [
           ...cryptoCurrencies,
           {
             symbol,
             displayName: name,
-            currentValue: price.price,
+            price: price.price,
             icon: cryptoIcons[slug] ? cryptoIcons[slug] : cryptoIcons.genericCryptoIcon,
             amountOwned: 0,
             rank: cmc_rank,
@@ -69,12 +70,16 @@ const Wallet = () => {
     return null;
   }
 
+  const sortedCryptosByMarketCap = cryptoCurrencies.sort((a, b) => {
+    return b.extraDetails.marketCap - a.extraDetails.marketCap;
+  });
+
   return (
     <>
       <IconButton onClick={getPrices}>
         <RefreshIcon />
       </IconButton>
-      <Accordion cryptoCurrencies={cryptoCurrencies} />
+      <Accordion cryptoCurrencies={sortedCryptosByMarketCap} />
     </>
   );
 };

@@ -92,7 +92,7 @@ const Accordion = ({ cryptoCurrencies }) => {
       ...quantities,
       [name]: {
         newQuantity: Number(newQuantity),
-        currentValue: cryptoCurrencies.find(crypto => crypto.displayName === name)?.currentValue,
+        price: cryptoCurrencies.find(crypto => crypto.displayName === name)?.price,
       },
     });
   };
@@ -100,7 +100,7 @@ const Accordion = ({ cryptoCurrencies }) => {
   const moveOwnedCryptosToTop = () => {
     let cryptosWithQuantity = cryptoCurrencies.filter(crypto => quantities[crypto.displayName] );
     cryptosWithQuantity.sort((a, b) => {
-      return b.currentValue * quantities[b.displayName].newQuantity - a.currentValue * quantities[a.displayName].newQuantity;
+      return b.price * quantities[b.displayName].newQuantity - a.price * quantities[a.displayName].newQuantity;
     });
     const cryptosWithoutQuantity = cryptoCurrencies.filter(crypto => !quantities[crypto.displayName] );
     return [...cryptosWithQuantity, ...cryptosWithoutQuantity];
@@ -132,7 +132,7 @@ const Accordion = ({ cryptoCurrencies }) => {
 
   useEffect(() => {
     const totalSum = Object.values?.(quantities).reduce(
-      (acc, crypto) => acc + crypto.newQuantity * crypto.currentValue,
+      (acc, crypto) => acc + crypto.newQuantity * crypto.price,
       0
     );
     setTotalWalletValue(totalSum);
