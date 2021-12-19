@@ -17,15 +17,13 @@ const Wallet = () => {
   };
 
   useEffect(() => {
+    getPrices();
+
     const interval = setInterval(() => {
       getPrices();
     }, refreshSeconds * 1000);
 
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    getPrices();
   }, []);
 
   if (!cryptos.length) {
@@ -80,10 +78,6 @@ const Wallet = () => {
         ]);
     }
   });
-
-  if (!cryptoCurrencies.length) {
-    return null;
-  }
 
   const sortedCryptosByMarketCap = cryptoCurrencies.sort((a, b) => {
     return b.extraDetails.marketCap - a.extraDetails.marketCap;
