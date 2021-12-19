@@ -13,7 +13,7 @@ const AccordionBottom = ({ crypto, classes, onEditIconClick }) => {
   const {
     marketCap,
     circulatingSupply,
-    maxSupply = "N/A",
+    maxSupply,
     percentChange1hour,
     percentChange24hours,
     percentChange1week,

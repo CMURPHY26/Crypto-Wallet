@@ -1,86 +1,16 @@
 import { IconButton, Typography } from "@material-ui/core";
 import { default as MuiAccordion } from "@material-ui/core/Accordion";
 import List from "@material-ui/core/List";
-import { darken, makeStyles } from "@material-ui/core/styles";
 import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
 import React, { useEffect, useState } from "react";
 import { currencyFormatter } from "../../../helpers/formatters";
+import { useAccordionStyles } from "./styles";
 import AccordionBottom from "./AccordionBottom";
 import AccordionTop from "./AccordionTop";
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%",
-    maxWidth: 700,
-    margin: "0 auto",
-    backgroundColor: theme.palette.background.paper,
-  },
-  avatar: {
-    backgroundColor: "transparent",
-    marginRight: 16,
-  },
-  listItemTop: {},
-  amountOwned: {
-    textAlign: "right",
-  },
-  icon: {
-    width: 40,
-    height: 40,
-  },
-  avatarLetters: {
-    marginRight: 16,
-  },
-  amountTextField: {
-    width: 75,
-    marginLeft: 30,
-  },
-  dropdowncryptoCurrencies: {
-    flex: 1,
-  },
-  editIcon: {
-    opacity: 0,
-    width: 17,
-    height: 17,
-    position: "absolute",
-    top: 5,
-    right: 5,
-    fill: theme.palette.grey,
-    "&:hover": {
-      opacity: 1,
-      transition: "opacity 0.5s",
-    },
-  },
-  summary: {
-    margin: 0,
-  },
-  detailsList: {
-    width: "100%",
-  },
-  accordion: {
-    justifyContent: "space-between",
-    borderRadius: 0,
-    "&:hover": {
-      backgroundColor: darken(theme.palette.background.paper, 0.07),
-      cursor: "pointer",
-      transition: "background-color ease .25s",
-    },
-  },
-  totalWalletValue: {
-    maxWidth: 700,
-    margin: "0 auto",
-    textAlign: "right",
-  },
-  buttonsContainer: {
-    marginTop: 20,
-  },
-  button: {
-    marginRight: 20,
-    width: 100,
-  },
-}));
+import { handleItemInLocalStorage, setItemInLocalStorage } from "../../../helpers/utils";
 
 const Accordion = ({ cryptoCurrencies }) => {
-  const classes = useStyles();
+  const classes = useAccordionStyles();
   const [quantities, setQuantities] = useState({});
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -98,11 +28,11 @@ const Accordion = ({ cryptoCurrencies }) => {
   };
 
   const moveOwnedCryptosToTop = () => {
-    let cryptosWithQuantity = cryptoCurrencies.filter(crypto => quantities[crypto.name] );
+    let cryptosWithQuantity = cryptoCurrencies.filter(crypto => quantities[crypto.name]);
     cryptosWithQuantity.sort((a, b) => {
       return b.price * quantities[b.name].newQuantity - a.price * quantities[a.name].newQuantity;
     });
-    const cryptosWithoutQuantity = cryptoCurrencies.filter(crypto => !quantities[crypto.name] );
+    const cryptosWithoutQuantity = cryptoCurrencies.filter(crypto => !quantities[crypto.name]);
     return [...cryptosWithQuantity, ...cryptosWithoutQuantity];
   };
 
@@ -115,20 +45,22 @@ const Accordion = ({ cryptoCurrencies }) => {
   };
 
   const onEditIconClick = name => {
-    if (showQuantityInput[name]) {
-      setShowQuantityInput({
-        [name]: false,
-      });
-    } else {
-      setShowQuantityInput({
-        [name]: true,
-      });
-    }
+    setShowQuantityInput({
+      [name]: !showQuantityInput[name],
+    });
   };
 
   useEffect(() => {
     setSortedCryptoCurrencies(moveOwnedCryptosToTop());
   }, [cryptoCurrencies, quantities]);
+
+  useEffect(() => {
+    handleItemInLocalStorage(setQuantities, "quantities");
+  }, []);
+
+  useEffect(() => {
+    setItemInLocalStorage("quantities", quantities);
+  }, [quantities]);
 
   useEffect(() => {
     const totalSum = Object.values?.(quantities).reduce(
@@ -138,40 +70,20 @@ const Accordion = ({ cryptoCurrencies }) => {
     setTotalWalletValue(totalSum);
   }, [quantities, cryptoCurrencies]);
 
-  useEffect(() => {
-    try {
-      if ("quantities" in localStorage) {
-        setQuantities(JSON.parse(localStorage.getItem("quantities")));
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem("quantities", JSON.stringify(quantities));
-    } catch (e) {
-      console.log(e);
-    }
-  }, [quantities]);
-
   return (
     <>
-      <IconButton onClick={resetAmounts} >
+      <IconButton onClick={resetAmounts}>
         <DeleteSweepIcon />
       </IconButton>
       {totalWalletValue > 0 && (
-        <Typography className={classes.totalWalletValue} variant="h5">
+        <Typography className={classes.totalWalletValue} variant='h5'>
           {currencyFormatter.format(totalWalletValue)}
         </Typography>
       )}
       <List className={classes.root}>
         {sortedCryptoCurrencies?.map(crypto => {
-          const { name, amountOwned } = crypto;
-          const trueAmountOwned = quantities[name]
-            ? quantities[name].newQuantity
-            : amountOwned;
+          const { name, originalQuantity } = crypto;
+          const quantityOwned = quantities[name] ? quantities[name].newQuantity : originalQuantity;
 
           return (
             <div key={name}>
@@ -182,14 +94,14 @@ const Accordion = ({ cryptoCurrencies }) => {
                 square
               >
                 <AccordionTop
-                  trueAmountOwned={trueAmountOwned}
+                  quantityOwned={quantityOwned}
                   showQuantityInput={showQuantityInput}
                   onChangeQuantity={onChangeQuantity}
                   classes={classes}
                   crypto={crypto}
                 />
                 <AccordionBottom
-                  trueAmountOwned={trueAmountOwned}
+                  quantityOwned={quantityOwned}
                   classes={classes}
                   crypto={crypto}
                   onEditIconClick={onEditIconClick}

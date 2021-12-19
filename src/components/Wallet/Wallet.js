@@ -50,11 +50,11 @@ const Wallet = () => {
             name,
             price: price.price,
             icon: cryptoIcons[slug] ? cryptoIcons[slug] : cryptoIcons.genericCryptoIcon,
-            amountOwned: 0,
+            originalQuantity: 0,
             rank: cmc_rank,
             extraDetails: {
               circulatingSupply: circulating_supply,
-              maxSupply: max_supply,
+              maxSupply: max_supply ?? 'N/A',
               marketCap: price.market_cap,
               percentChange1hour: price.percent_change_1h,
               percentChange24hours: price.percent_change_7d,
