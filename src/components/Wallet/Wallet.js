@@ -31,9 +31,23 @@ const Wallet = () => {
   }
 
   cryptos.map(crypto => {
-    const { cmc_rank, name, quote, slug, circulating_supply, max_supply, symbol } =
-      crypto;
-    const price = quote.USD;
+    const {
+      cmc_rank: rank,
+      name,
+      quote,
+      slug,
+      circulating_supply: circulatingSupply,
+      max_supply: maxSupply,
+      symbol,
+    } = crypto;
+    const priceObj = quote.USD;
+    const {
+      price,
+      percent_change_1h: percentChange1hour,
+      percent_change_24h: percentChange1day,
+      percent_change_7d: percentChange1week,
+      market_cap: marketCap,
+    } = priceObj;
     const stablecoins = ['USDT', 'USDC', 'BUSD', 'DAI', 'UST'];
     const shitcoins = ['SHIB', 'DOGE', 'VET'];
     const boringCoins = ['AVAX', 'LUNA', 'CRO', 'HBAR', 'AXS', 'NEAR', 'FTT'];
@@ -46,24 +60,23 @@ const Wallet = () => {
     ];
 
     if (!excludedCoins.includes(symbol)) {
-      cmc_rank < 35 &&
+      rank < 35 &&
         (cryptoCurrencies = [
           ...cryptoCurrencies,
           {
             symbol,
             name,
-            price: price.price,
+            rank,
+            price,
             icon: cryptoIcons?.[slug] ?? cryptoIcons.genericCryptoIcon,
             originalQuantity: 0,
-            rank: cmc_rank,
             extraDetails: {
-              circulatingSupply: circulating_supply,
-              maxSupply: max_supply ?? 'N/A',
-              marketCap: price.market_cap,
-              percentChange1hour: price.percent_change_1h,
-              percentChange24hours: price.percent_change_7d,
-              percentChange1week: price.percent_change_24h,
-              percentChange1month: price.percent_change_30d,
+              circulatingSupply,
+              maxSupply: maxSupply ?? 'N/A',
+              marketCap,
+              percentChange1hour,
+              percentChange1day,
+              percentChange1week,
             },
           },
         ]);

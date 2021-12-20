@@ -18,7 +18,7 @@ const AccordionBottom = ({ crypto, classes, onEditIconClick }) => {
     circulatingSupply,
     maxSupply,
     percentChange1hour,
-    percentChange24hours,
+    percentChange1day,
     percentChange1week,
   } = crypto.extraDetails;
 
@@ -51,7 +51,7 @@ const AccordionBottom = ({ crypto, classes, onEditIconClick }) => {
           />
           <ListItemText
             primary='24 Hours'
-            secondary={formatPercentChangeOverTime(percentChange24hours)}
+            secondary={formatPercentChangeOverTime(percentChange1day)}
             classes={{ root: classes.dropdowncryptoCurrencies }}
           />
           <ListItemText
