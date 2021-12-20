@@ -31,9 +31,7 @@ const AccordionTop = ({
             <Icon className={classes.icon}>{crypto.icon}</Icon>
           </Avatar>
         )}
-        {crypto.abbr && (
-          <Avatar className={classes.avatarLetters}>{crypto.abbr}</Avatar>
-        )}
+        {crypto.abbr && <Avatar className={classes.avatarLetters}>{crypto.abbr}</Avatar>}
         <>
           <ListItemText
             primary={crypto.name}
@@ -48,7 +46,7 @@ const AccordionTop = ({
           />
           {showQuantityInput[crypto.name] && (
             <TextField
-              id='amount-owned-input'
+              id='quantity-owned-input'
               type='number'
               label={crypto.symbol}
               InputProps={{ inputProps: { min: 0 } }}

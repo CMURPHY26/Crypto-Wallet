@@ -31,15 +31,8 @@ const Wallet = () => {
   }
 
   cryptos.map(crypto => {
-    const {
-      cmc_rank,
-      name,
-      quote,
-      slug,
-      circulating_supply,
-      max_supply,
-      symbol,
-    } = crypto;
+    const { cmc_rank, name, quote, slug, circulating_supply, max_supply, symbol } =
+      crypto;
     const price = quote.USD;
     const stablecoins = ['USDT', 'USDC', 'BUSD', 'DAI', 'UST'];
     const shitcoins = ['SHIB', 'DOGE', 'VET'];

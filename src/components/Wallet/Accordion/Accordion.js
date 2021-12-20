@@ -10,7 +10,7 @@ import AccordionTop from './AccordionTop';
 import {
   handleItemInLocalStorage,
   setItemInLocalStorage,
-} from '../../../helpers/utils';
+} from '../../../helpers/localStorage';
 
 const Accordion = ({ cryptoCurrencies }) => {
   const classes = useAccordionStyles();
@@ -18,8 +18,7 @@ const Accordion = ({ cryptoCurrencies }) => {
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [totalWalletValue, setTotalWalletValue] = useState(0);
-  const [sortedCryptoCurrencies, setSortedCryptoCurrencies] =
-    useState(cryptoCurrencies);
+  const [sortedCryptoCurrencies, setSortedCryptoCurrencies] = useState(cryptoCurrencies);
 
   const onChangeQuantity = (name, newQuantity) => {
     setQuantities({
@@ -32,15 +31,14 @@ const Accordion = ({ cryptoCurrencies }) => {
   };
 
   const moveOwnedCryptosToTop = () => {
-    let cryptosWithQuantity = cryptoCurrencies.filter(
+    const cryptosWithQuantity = cryptoCurrencies.filter(
       crypto => quantities[crypto.name]
     );
-    cryptosWithQuantity.sort((a, b) => {
-      return (
+    cryptosWithQuantity.sort(
+      (a, b) =>
         b.price * quantities[b.name].newQuantity -
         a.price * quantities[a.name].newQuantity
-      );
-    });
+    );
     const cryptosWithoutQuantity = cryptoCurrencies.filter(
       crypto => !quantities[crypto.name]
     );
@@ -94,8 +92,7 @@ const Accordion = ({ cryptoCurrencies }) => {
       <List className={classes.root}>
         {sortedCryptoCurrencies?.map(crypto => {
           const { name, originalQuantity } = crypto;
-          const quantityOwned =
-            quantities[name]?.newQuantity ?? originalQuantity;
+          const quantityOwned = quantities[name]?.newQuantity ?? originalQuantity;
 
           return (
             <div key={name}>

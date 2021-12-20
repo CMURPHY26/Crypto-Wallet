@@ -1,5 +1,5 @@
 async function makeFetchRequest(url, headers) {
-  let response = await fetch(url, {
+  const response = await fetch(url, {
     headers: {
       ...headers,
       Accept: 'application/json',
