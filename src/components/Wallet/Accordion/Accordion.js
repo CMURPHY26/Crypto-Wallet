@@ -51,6 +51,7 @@ const Accordion = ({ cryptoCurrencies }) => {
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+    setShowQuantityInput(false);
   };
 
   const onEditIconClick = name => {

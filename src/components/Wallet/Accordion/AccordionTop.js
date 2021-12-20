@@ -53,6 +53,7 @@ const AccordionTop = ({
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.amountTextField }}
               onChange={e => onChangeQuantity(crypto.name, e.target.value)}
+              onClick={e => e.stopPropagation()}
             />
           )}
         </>
