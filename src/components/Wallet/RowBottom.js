@@ -7,10 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import StoreIcon from '@material-ui/icons/Store';
 import React from 'react';
-import {
-  abbreviateCurrency,
-  formatPercentChangeOverTime,
-} from '../../helpers/formatters';
+import { abbreviateCurrency, formatPercentChangeOverTime } from '../../helpers/utils';
 
 const RowBottom = ({ crypto, classes, onEditIconClick }) => {
   const {

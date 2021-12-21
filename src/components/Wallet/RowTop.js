@@ -6,7 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
-import { currencyFormatter } from '../../helpers/formatters';
+import { currencyFormatter } from '../../helpers/utils';
 
 const RowTop = ({
   crypto,

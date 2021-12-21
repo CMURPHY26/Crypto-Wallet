@@ -3,14 +3,11 @@ import Accordion from '@material-ui/core/Accordion';
 import List from '@material-ui/core/List';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import React, { useEffect, useState } from 'react';
-import { currencyFormatter } from '../../helpers/formatters';
+import { currencyFormatter } from '../../helpers/utils';
 import { useAccordionStyles } from './styles';
 import RowBottom from './RowBottom';
 import RowTop from './RowTop';
-import {
-  handleItemInLocalStorage,
-  setItemInLocalStorage,
-} from '../../helpers/localStorage';
+import { handleItemInLocalStorage, setItemInLocalStorage } from '../../helpers/utils';
 
 const Row = ({ cryptoCurrencies }) => {
   const classes = useAccordionStyles();
