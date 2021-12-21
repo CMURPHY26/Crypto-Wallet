@@ -7,7 +7,8 @@ import { fetchCryptoData } from '../../helpers/apis';
 
 const Wallet = () => {
   const [cryptos, setCryptos] = useState({});
-  const refreshSeconds = 600; // put high number to prevent hitting limit
+  const shouldRefresh = false;
+  const refreshSeconds = 10;
   let cryptoCurrencies = [];
 
   const getPrices = () => {
@@ -19,11 +20,13 @@ const Wallet = () => {
   useEffect(() => {
     getPrices();
 
-    const interval = setInterval(() => {
-      getPrices();
-    }, refreshSeconds * 1000);
+    if (shouldRefresh) {
+      const interval = setInterval(() => {
+        getPrices();
+      }, refreshSeconds * 1000);
 
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    }
   }, []);
 
   if (!cryptos.length) {
