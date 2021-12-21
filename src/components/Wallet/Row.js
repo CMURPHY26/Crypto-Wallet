@@ -1,18 +1,18 @@
 import { IconButton, Typography } from '@material-ui/core';
-import { default as MuiAccordion } from '@material-ui/core/Accordion';
+import Accordion from '@material-ui/core/Accordion';
 import List from '@material-ui/core/List';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import React, { useEffect, useState } from 'react';
-import { currencyFormatter } from '../../../helpers/formatters';
+import { currencyFormatter } from '../../helpers/formatters';
 import { useAccordionStyles } from './styles';
-import AccordionBottom from './AccordionBottom';
-import AccordionTop from './AccordionTop';
+import RowBottom from './RowBottom';
+import RowTop from './RowTop';
 import {
   handleItemInLocalStorage,
   setItemInLocalStorage,
-} from '../../../helpers/localStorage';
+} from '../../helpers/localStorage';
 
-const Accordion = ({ cryptoCurrencies }) => {
+const Row = ({ cryptoCurrencies }) => {
   const classes = useAccordionStyles();
   const [quantities, setQuantities] = useState({});
   const [showQuantityInput, setShowQuantityInput] = useState(false);
@@ -97,26 +97,26 @@ const Accordion = ({ cryptoCurrencies }) => {
 
           return (
             <div key={name}>
-              <MuiAccordion
-                classes={{ root: classes.accordion }}
+              <Accordion
+                classes={{ root: classes.row }}
                 expanded={expanded === name}
                 onChange={handleChange(name)}
                 square
               >
-                <AccordionTop
+                <RowTop
                   quantityOwned={quantityOwned}
                   showQuantityInput={showQuantityInput}
                   onChangeQuantity={onChangeQuantity}
                   classes={classes}
                   crypto={crypto}
                 />
-                <AccordionBottom
+                <RowBottom
                   quantityOwned={quantityOwned}
                   classes={classes}
                   crypto={crypto}
                   onEditIconClick={onEditIconClick}
                 />
-              </MuiAccordion>
+              </Accordion>
             </div>
           );
         })}
@@ -125,4 +125,4 @@ const Accordion = ({ cryptoCurrencies }) => {
   );
 };
 
-export default Accordion;
+export default Row;

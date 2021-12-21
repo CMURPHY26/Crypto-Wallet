@@ -48,7 +48,7 @@ export const useAccordionStyles = makeStyles(theme => ({
   detailsList: {
     width: '100%',
   },
-  accordion: {
+  row: {
     justifyContent: 'space-between',
     borderRadius: 0,
     '&:hover': {

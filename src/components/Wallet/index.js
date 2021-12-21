@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import Accordion from './Accordion/Accordion';
+import Row from './Row';
 import { cryptoIcons } from '../../helpers/icons';
 import { fetchCryptoData } from '../../helpers/apis';
 
@@ -95,7 +95,7 @@ const Wallet = () => {
       <IconButton onClick={getPrices}>
         <RefreshIcon />
       </IconButton>
-      <Accordion cryptoCurrencies={sortedCryptosByMarketCap} />
+      <Row cryptoCurrencies={sortedCryptosByMarketCap} />
     </>
   );
 };

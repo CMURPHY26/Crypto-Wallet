@@ -10,9 +10,9 @@ import React from 'react';
 import {
   abbreviateCurrency,
   formatPercentChangeOverTime,
-} from '../../../helpers/formatters';
+} from '../../helpers/formatters';
 
-const AccordionBottom = ({ crypto, classes, onEditIconClick }) => {
+const RowBottom = ({ crypto, classes, onEditIconClick }) => {
   const {
     marketCap,
     circulatingSupply,
@@ -77,4 +77,4 @@ const AccordionBottom = ({ crypto, classes, onEditIconClick }) => {
   );
 };
 
-export default AccordionBottom;
+export default RowBottom;
