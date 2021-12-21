@@ -1,5 +1,6 @@
 import { IconButton, Typography } from '@material-ui/core';
 import Accordion from '@material-ui/core/Accordion';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import List from '@material-ui/core/List';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import React, { useEffect, useState } from 'react';
@@ -8,6 +9,7 @@ import { useAccordionStyles } from './styles';
 import RowBottom from './RowBottom';
 import RowTop from './RowTop';
 import { handleItemInLocalStorage, setItemInLocalStorage } from '../../helpers/utils';
+import { CSVLink } from 'react-csv';
 
 const Row = ({ cryptoCurrencies }) => {
   const classes = useAccordionStyles();
@@ -77,10 +79,25 @@ const Row = ({ cryptoCurrencies }) => {
     setTotalWalletValue(totalSum);
   }, [quantities, cryptoCurrencies]);
 
+  const csvData = Object.keys(quantities)?.map(quantity => {
+    return [...[quantity], quantities[quantity].newQuantity];
+  });
+
   return (
     <>
       <IconButton onClick={resetAmounts}>
         <DeleteSweepIcon />
+      </IconButton>
+      <IconButton className={classes.csvButton}>
+        <CSVLink
+          filename={`crypto-wallet-${new Intl.DateTimeFormat('en-US').format(
+            Date.now()
+          )}.csv`}
+          className={classes.csvIcon}
+          data={csvData}
+        >
+          <FileDownloadIcon />
+        </CSVLink>
       </IconButton>
       {totalWalletValue > 0 && (
         <Typography className={classes.totalWalletValue} variant='h5'>

@@ -69,4 +69,13 @@ export const useAccordionStyles = makeStyles(theme => ({
     marginRight: 20,
     width: 100,
   },
+  csvIcon: {
+    color: 'inherit',
+    display: 'inherit',
+    marginTop: 2,
+  },
+  csvButton: {
+    height: 48,
+    width: 48,
+  },
 }));
