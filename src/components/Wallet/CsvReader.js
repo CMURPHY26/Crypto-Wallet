@@ -1,9 +1,13 @@
 import React, { createRef, useEffect, useState } from 'react';
 import { CSVReader } from 'react-papaparse';
+import IconButton from '@mui/material/IconButton';
+import UploadIcon from '@mui/icons-material/Upload';
 
 const buttonRef = createRef();
 
-const CsvReader = ({ setDataFromCsv, classes }) => {
+const CsvReader = ({ setDataFromCsv }) => {
+  const [isShowingCsvUploader, setIsShowingCsvUploader] = useState(true);
+
   const handleOpenDialog = e => {
     if (buttonRef.current) {
       buttonRef.current.open(e);
@@ -17,21 +21,43 @@ const CsvReader = ({ setDataFromCsv, classes }) => {
       };
     });
     setDataFromCsv(data);
+    setIsShowingCsvUploader(false);
   };
 
   return (
     <>
-      <CSVReader
-        className={classes.csvUpload}
-        ref={buttonRef}
-        onFileLoad={handleOnFileLoad}
-      >
-        <div>
-          <button type='button' onClick={handleOpenDialog}>
-            Upload CSV
-          </button>
-        </div>
-      </CSVReader>
+      {isShowingCsvUploader && (
+        <CSVReader
+          ref={buttonRef}
+          onFileLoad={handleOnFileLoad}
+          removeButtonColor={true}
+          style={{
+            dropArea: {
+              width: 20,
+              height: 20,
+              border: 'none',
+              position: 'absolute',
+              right: 40,
+              top: 2,
+            },
+            dropFile: {
+              display: 'none',
+            },
+            fileSizeInfo: {
+              display: 'none',
+            },
+            fileNameInfo: {
+              display: 'none',
+            },
+          }}
+        >
+          <div>
+            <IconButton onClick={handleOpenDialog}>
+              <UploadIcon />
+            </IconButton>
+          </div>
+        </CSVReader>
+      )}
     </>
   );
 };

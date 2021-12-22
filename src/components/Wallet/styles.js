@@ -5,13 +5,11 @@ export const useAccordionStyles = makeStyles(theme => ({
     width: '100%',
     maxWidth: 700,
     margin: '0 auto',
-    // backgroundColor: theme.palette.background.paper,
   },
   avatar: {
     backgroundColor: 'transparent',
     marginRight: 16,
   },
-  listItemTop: {},
   originalQuantity: {
     textAlign: 'right',
   },
@@ -52,7 +50,6 @@ export const useAccordionStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     borderRadius: 0,
     '&:hover': {
-      // backgroundColor: darken(theme.palette.background.paper, 0.07),
       cursor: 'pointer',
       transition: 'background-color ease .25s',
     },
@@ -74,9 +71,4 @@ export const useAccordionStyles = makeStyles(theme => ({
     display: 'inherit',
     marginTop: 2,
   },
-  csvButton: {
-    height: 48,
-    width: 48,
-  },
-  csvUpload: {},
 }));

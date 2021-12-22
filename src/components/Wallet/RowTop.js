@@ -47,6 +47,7 @@ const RowTop = ({
           {showQuantityInput[crypto.name] && (
             <TextField
               id='quantity-owned-input'
+              variant='standard'
               type='number'
               label={crypto.symbol}
               InputProps={{ inputProps: { min: 0 } }}
