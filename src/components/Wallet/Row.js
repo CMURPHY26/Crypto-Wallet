@@ -1,6 +1,6 @@
 import { IconButton, Typography } from '@material-ui/core';
 import Accordion from '@material-ui/core/Accordion';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
+// import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import List from '@material-ui/core/List';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import React, { useEffect, useState } from 'react';
@@ -18,17 +18,33 @@ const Row = ({ cryptoCurrencies }) => {
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [totalWalletValue, setTotalWalletValue] = useState(0);
+  const [dataFromCsv, setDataFromCsv] = useState([]);
   const [sortedCryptoCurrencies, setSortedCryptoCurrencies] = useState(cryptoCurrencies);
+  const getPrice = name => cryptoCurrencies.find(crypto => crypto.name === name)?.price;
 
   const onChangeQuantity = (name, newQuantity) => {
     setQuantities({
       ...quantities,
       [name]: {
         newQuantity: Number(newQuantity),
-        price: cryptoCurrencies.find(crypto => crypto.name === name)?.price,
+        price: getPrice(name),
       },
     });
   };
+
+  useEffect(() => {
+    let items = {};
+    dataFromCsv.map(item => {
+      const name = Object.keys(item);
+      const quantity = item[name];
+
+      items[name] = {
+        newQuantity: quantity,
+        price: getPrice(name),
+      };
+    });
+    setQuantities(items);
+  }, [dataFromCsv]);
 
   const moveOwnedCryptosToTop = () => {
     const cryptosWithQuantity = cryptoCurrencies.filter(
@@ -86,7 +102,7 @@ const Row = ({ cryptoCurrencies }) => {
 
   return (
     <>
-      <CsvReader />
+      <CsvReader setDataFromCsv={setDataFromCsv} />
       <IconButton onClick={resetAmounts}>
         <DeleteSweepIcon />
       </IconButton>
@@ -98,7 +114,7 @@ const Row = ({ cryptoCurrencies }) => {
           className={classes.csvIcon}
           data={csvData}
         >
-          <FileDownloadIcon />
+          Download
         </CSVLink>
       </IconButton>
       {totalWalletValue > 0 && (

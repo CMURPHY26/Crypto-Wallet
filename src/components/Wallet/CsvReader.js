@@ -3,9 +3,7 @@ import { CSVReader } from 'react-papaparse';
 
 const buttonRef = createRef();
 
-const CsvReader = () => {
-  const [dataFromCsv, setDataFromCsv] = useState([]);
-
+const CsvReader = ({ setDataFromCsv }) => {
   const handleOpenDialog = e => {
     if (buttonRef.current) {
       buttonRef.current.open(e);
@@ -20,10 +18,6 @@ const CsvReader = () => {
     });
     setDataFromCsv(data);
   };
-
-  useEffect(() => {
-    console.log(dataFromCsv);
-  }, [dataFromCsv]);
 
   return (
     <>
