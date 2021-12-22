@@ -25,12 +25,15 @@ const RowTop = ({
   const [quantityAction, setQuantityAction] = useState(null);
 
   const updateQuantity = newQuantity => {
+    quantityOwned = Number(quantityOwned);
+    newQuantity = Number(newQuantity);
+
     if (quantityAction === 'add') {
-      return Number(quantityOwned) + Number(newQuantity);
+      return quantityOwned + newQuantity;
     } else if (quantityAction === 'subtract') {
-      return Number(quantityOwned) - Number(newQuantity);
+      return quantityOwned - newQuantity;
     } else {
-      return Number(newQuantity);
+      return newQuantity;
     }
   };
 

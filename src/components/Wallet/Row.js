@@ -1,17 +1,20 @@
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import Accordion from '@mui/material/Accordion';
-import DownloadIcon from '@mui/icons-material/Download';
-import List from '@mui/material/List';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import DownloadIcon from '@mui/icons-material/Download';
+import Accordion from '@mui/material/Accordion';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
 import React, { useEffect, useState } from 'react';
-import { currencyFormatter } from '../../helpers/utils';
-import { useAccordionStyles } from './styles';
+import { CSVLink } from 'react-csv';
+import {
+  currencyFormatter,
+  handleItemInLocalStorage,
+  setItemInLocalStorage,
+} from '../../helpers/utils';
+import CsvReader from './CsvReader';
 import RowBottom from './RowBottom';
 import RowTop from './RowTop';
-import { handleItemInLocalStorage, setItemInLocalStorage } from '../../helpers/utils';
-import { CSVLink } from 'react-csv';
-import CsvReader from './CsvReader';
+import { useAccordionStyles } from './styles';
 
 const Row = ({ cryptoCurrencies }) => {
   const classes = useAccordionStyles();

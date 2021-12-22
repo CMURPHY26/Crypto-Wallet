@@ -1,7 +1,7 @@
-import React, { createRef, useEffect, useState } from 'react';
-import { CSVReader } from 'react-papaparse';
-import IconButton from '@mui/material/IconButton';
 import UploadIcon from '@mui/icons-material/Upload';
+import IconButton from '@mui/material/IconButton';
+import React, { createRef, useState } from 'react';
+import { CSVReader } from 'react-papaparse';
 
 const buttonRef = createRef();
 

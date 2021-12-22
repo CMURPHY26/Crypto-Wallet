@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import Row from './Row';
-import { cryptoIcons } from '../../helpers/icons';
+import IconButton from '@mui/material/IconButton';
+import React, { useEffect, useState } from 'react';
 import { fetchCryptoData } from '../../helpers/apis';
+import { cryptoIcons } from '../../helpers/icons';
+import Row from './Row';
 
 const Wallet = () => {
   const [cryptos, setCryptos] = useState({});

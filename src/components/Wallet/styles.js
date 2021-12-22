@@ -1,4 +1,3 @@
-import { SCOPABLE_TYPES } from '@babel/types';
 import { makeStyles } from '@mui/styles';
 
 export const useAccordionStyles = makeStyles(theme => ({

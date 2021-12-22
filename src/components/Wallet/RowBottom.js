@@ -1,11 +1,11 @@
-import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import StoreIcon from '@mui/icons-material/Store';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import EditIcon from '@mui/icons-material/Edit';
-import StoreIcon from '@mui/icons-material/Store';
 import React from 'react';
 import { abbreviateCurrency, formatPercentChangeOverTime } from '../../helpers/utils';
 
