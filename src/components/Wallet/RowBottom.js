@@ -1,11 +1,11 @@
-import { IconButton } from '@material-ui/core';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import EditRoundedIcon from '@material-ui/icons/EditRounded';
-import StoreIcon from '@material-ui/icons/Store';
+import IconButton from '@mui/material/IconButton';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import EditIcon from '@mui/icons-material/Edit';
+import StoreIcon from '@mui/icons-material/Store';
 import React from 'react';
 import { abbreviateCurrency, formatPercentChangeOverTime } from '../../helpers/utils';
 
@@ -66,7 +66,7 @@ const RowBottom = ({ crypto, classes, onEditIconClick }) => {
             <StoreIcon />
           </IconButton>
           <IconButton onClick={() => onEditIconClick(crypto.name)}>
-            <EditRoundedIcon />
+            <EditIcon />
           </IconButton>
         </div>
       </List>

@@ -1,8 +1,9 @@
-import { IconButton, Typography } from '@material-ui/core';
-import Accordion from '@material-ui/core/Accordion';
-// import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import List from '@material-ui/core/List';
-import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Accordion from '@mui/material/Accordion';
+import DownloadIcon from '@mui/icons-material/Download';
+import List from '@mui/material/List';
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import React, { useEffect, useState } from 'react';
 import { currencyFormatter } from '../../helpers/utils';
 import { useAccordionStyles } from './styles';
@@ -102,7 +103,7 @@ const Row = ({ cryptoCurrencies }) => {
 
   return (
     <>
-      <CsvReader setDataFromCsv={setDataFromCsv} />
+      <CsvReader classes={classes} setDataFromCsv={setDataFromCsv} />
       <IconButton onClick={resetAmounts}>
         <DeleteSweepIcon />
       </IconButton>
@@ -114,7 +115,7 @@ const Row = ({ cryptoCurrencies }) => {
           className={classes.csvIcon}
           data={csvData}
         >
-          Download
+          <DownloadIcon />
         </CSVLink>
       </IconButton>
       {totalWalletValue > 0 && (

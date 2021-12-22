@@ -3,7 +3,7 @@ import { CSVReader } from 'react-papaparse';
 
 const buttonRef = createRef();
 
-const CsvReader = ({ setDataFromCsv }) => {
+const CsvReader = ({ setDataFromCsv, classes }) => {
   const handleOpenDialog = e => {
     if (buttonRef.current) {
       buttonRef.current.open(e);
@@ -21,7 +21,11 @@ const CsvReader = ({ setDataFromCsv }) => {
 
   return (
     <>
-      <CSVReader ref={buttonRef} onFileLoad={handleOnFileLoad}>
+      <CSVReader
+        className={classes.csvUpload}
+        ref={buttonRef}
+        onFileLoad={handleOnFileLoad}
+      >
         <div>
           <button type='button' onClick={handleOpenDialog}>
             Upload CSV

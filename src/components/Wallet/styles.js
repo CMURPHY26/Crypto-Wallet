@@ -1,11 +1,11 @@
-import { darken, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 
 export const useAccordionStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 700,
     margin: '0 auto',
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
   },
   avatar: {
     backgroundColor: 'transparent',
@@ -36,7 +36,7 @@ export const useAccordionStyles = makeStyles(theme => ({
     position: 'absolute',
     top: 5,
     right: 5,
-    fill: theme.palette.grey,
+    fill: 'grey',
     '&:hover': {
       opacity: 1,
       transition: 'opacity 0.5s',
@@ -52,7 +52,7 @@ export const useAccordionStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     borderRadius: 0,
     '&:hover': {
-      backgroundColor: darken(theme.palette.background.paper, 0.07),
+      // backgroundColor: darken(theme.palette.background.paper, 0.07),
       cursor: 'pointer',
       transition: 'background-color ease .25s',
     },
@@ -78,4 +78,5 @@ export const useAccordionStyles = makeStyles(theme => ({
     height: 48,
     width: 48,
   },
+  csvUpload: {},
 }));

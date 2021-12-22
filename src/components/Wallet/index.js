@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import RefreshIcon from '@material-ui/icons/Refresh';
+import IconButton from '@mui/material/IconButton';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import Row from './Row';
 import { cryptoIcons } from '../../helpers/icons';
 import { fetchCryptoData } from '../../helpers/apis';
