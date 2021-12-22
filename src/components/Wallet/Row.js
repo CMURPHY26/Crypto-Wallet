@@ -10,6 +10,7 @@ import RowBottom from './RowBottom';
 import RowTop from './RowTop';
 import { handleItemInLocalStorage, setItemInLocalStorage } from '../../helpers/utils';
 import { CSVLink } from 'react-csv';
+import CsvReader from './CsvReader';
 
 const Row = ({ cryptoCurrencies }) => {
   const classes = useAccordionStyles();
@@ -85,6 +86,7 @@ const Row = ({ cryptoCurrencies }) => {
 
   return (
     <>
+      <CsvReader />
       <IconButton onClick={resetAmounts}>
         <DeleteSweepIcon />
       </IconButton>
