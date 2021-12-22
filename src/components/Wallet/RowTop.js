@@ -22,7 +22,7 @@ const RowTop = ({
   setShowQuantityInput,
   onChangeQuantity,
 }) => {
-  const [quantityAction, setQuantityAction] = useState(null);
+  const [quantityAction, setQuantityAction] = useState('add');
 
   const updateQuantity = newQuantity => {
     quantityOwned = Number(quantityOwned);
