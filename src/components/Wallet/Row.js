@@ -14,7 +14,7 @@ import {
 import CsvReader from './CsvReader';
 import RowBottom from './RowBottom';
 import RowTop from './RowTop';
-import { useAccordionStyles } from './styles';
+import { useAccordionStyles } from '../../helpers/styles';
 
 const Row = ({ cryptoCurrencies }) => {
   const classes = useAccordionStyles();

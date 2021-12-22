@@ -54,7 +54,7 @@ const Wallet = () => {
     const stablecoins = ['USDT', 'USDC', 'BUSD', 'DAI', 'UST'];
     const shitcoins = ['SHIB', 'DOGE', 'VET'];
     const boringCoins = ['AVAX', 'LUNA', 'CRO', 'HBAR', 'AXS', 'NEAR', 'FTT'];
-    const bitcoinDuplicates = ['WBTC'];
+    const bitcoinDuplicates = ['WBTC', 'BTCB'];
     const excludedCoins = [
       ...stablecoins,
       ...shitcoins,
@@ -63,7 +63,7 @@ const Wallet = () => {
     ];
 
     if (!excludedCoins.includes(symbol)) {
-      rank < 35 &&
+      rank < 36 &&
         (cryptoCurrencies = [
           ...cryptoCurrencies,
           {
