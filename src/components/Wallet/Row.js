@@ -11,7 +11,7 @@ import {
   handleItemInLocalStorage,
   setItemInLocalStorage,
 } from '../../helpers/utils';
-import CsvReader from './CsvReader';
+import CsvReader from '../CsvReader';
 import RowBottom from './RowBottom';
 import RowTop from './RowTop';
 import { useAccordionStyles } from '../../helpers/styles';
