@@ -21,7 +21,7 @@ const Row = ({ cryptoCurrencies }) => {
   const [totalWalletValue, setTotalWalletValue] = useState(0);
   const [dataFromCsv, setDataFromCsv] = useState([]);
   const [sortedCryptoCurrencies, setSortedCryptoCurrencies] = useState(cryptoCurrencies);
-  const getPrice = name => cryptoCurrencies.find(crypto => crypto.name === name)?.price;
+  const getPrice = name => cryptoCurrencies.find(crypto => crypto.name == name)?.price;
 
   const onChangeQuantity = (name, newQuantity) => {
     setQuantities({
