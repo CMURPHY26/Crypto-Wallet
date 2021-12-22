@@ -139,6 +139,7 @@ const Row = ({ cryptoCurrencies }) => {
                 <RowTop
                   quantityOwned={quantityOwned}
                   showQuantityInput={showQuantityInput}
+                  setShowQuantityInput={setShowQuantityInput}
                   onChangeQuantity={onChangeQuantity}
                   classes={classes}
                   crypto={crypto}

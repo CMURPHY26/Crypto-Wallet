@@ -1,25 +1,25 @@
-import Icon from '@mui/material/Icon';
+import AddIcon from '@mui/icons-material/Add';
+import CheckIcon from '@mui/icons-material/Check';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import RemoveIcon from '@mui/icons-material/Remove';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Avatar from '@mui/material/Avatar';
+import FormControl from '@mui/material/FormControl';
+import Icon from '@mui/material/Icon';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import TextField from '@mui/material/TextField';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import React, { useState } from 'react';
 import { currencyFormatter } from '../../helpers/utils';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 
 const RowTop = ({
   crypto,
   classes,
   quantityOwned,
   showQuantityInput,
+  setShowQuantityInput,
   onChangeQuantity,
 }) => {
   const [quantityAction, setQuantityAction] = useState(null);
@@ -77,10 +77,6 @@ const RowTop = ({
                   variant='standard'
                   type='number'
                   label={crypto.symbol}
-                  InputProps={{
-                    min: 0,
-                  }}
-                  InputLabelProps={{ shrink: true }}
                   onBlur={e =>
                     onChangeQuantity(crypto.name, updateQuantity(e.target.value))
                   }
@@ -103,6 +99,12 @@ const RowTop = ({
                   onClick={e => {
                     e.stopPropagation();
                     setQuantityAction('subtract');
+                  }}
+                />
+                <CheckIcon
+                  onClick={e => {
+                    e.stopPropagation();
+                    setShowQuantityInput(false);
                   }}
                 />
               </div>

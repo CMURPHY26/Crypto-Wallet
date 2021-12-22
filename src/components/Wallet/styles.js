@@ -1,3 +1,4 @@
+import { SCOPABLE_TYPES } from '@babel/types';
 import { makeStyles } from '@mui/styles';
 
 export const useAccordionStyles = makeStyles(theme => ({
@@ -74,5 +75,15 @@ export const useAccordionStyles = makeStyles(theme => ({
   quantityIcons: {
     display: 'flex',
     flexDirection: 'column',
+    transform: 'scale(.8)',
+    color: 'grey',
+    '& svg': {
+      width: 20,
+      height: 18,
+      margin: 0,
+      '&:hover': {
+        opacity: 0.5,
+      },
+    },
   },
 }));
