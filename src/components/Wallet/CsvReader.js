@@ -52,7 +52,7 @@ const CsvReader = ({ setDataFromCsv }) => {
           }}
         >
           <div>
-            <IconButton onClick={handleOpenDialog}>
+            <IconButton aria-label='Upload CSV' onClick={handleOpenDialog}>
               <UploadIcon />
             </IconButton>
           </div>

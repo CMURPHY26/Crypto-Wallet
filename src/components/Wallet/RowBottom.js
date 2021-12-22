@@ -61,11 +61,15 @@ const RowBottom = ({ crypto, classes, onEditIconClick }) => {
         <div className={classes.buttonsContainer}>
           <IconButton
             target='_blank'
+            aria-label='Buy on Coinbase'
             href={`https://www.coinbase.com/price/${crypto.name}`}
           >
             <StoreIcon />
           </IconButton>
-          <IconButton onClick={() => onEditIconClick(crypto.name)}>
+          <IconButton
+            aria-label='Edit quantity'
+            onClick={() => onEditIconClick(crypto.name)}
+          >
             <EditIcon />
           </IconButton>
         </div>

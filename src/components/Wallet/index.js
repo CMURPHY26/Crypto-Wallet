@@ -92,7 +92,7 @@ const Wallet = () => {
 
   return (
     <>
-      <IconButton onClick={getPrices}>
+      <IconButton aria-label='Update Prices' onClick={getPrices}>
         <RefreshIcon />
       </IconButton>
       <Row cryptoCurrencies={sortedCryptosByMarketCap} />

@@ -104,10 +104,10 @@ const Row = ({ cryptoCurrencies }) => {
   return (
     <>
       <CsvReader classes={classes} setDataFromCsv={setDataFromCsv} />
-      <IconButton onClick={resetAmounts}>
+      <IconButton aria-label='Reset all quantities' onClick={resetAmounts}>
         <DeleteSweepIcon />
       </IconButton>
-      <IconButton className={classes.csvButton}>
+      <IconButton className={classes.csvButton} aria-label='Download CSV'>
         <CSVLink
           filename={`crypto-wallet-${new Intl.DateTimeFormat('en-US').format(
             Date.now()
