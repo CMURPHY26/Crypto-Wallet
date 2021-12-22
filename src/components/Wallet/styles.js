@@ -20,8 +20,8 @@ export const useAccordionStyles = makeStyles(theme => ({
   avatarLetters: {
     marginRight: 16,
   },
-  amountTextField: {
-    width: 75,
+  quantityTextField: {
+    width: 110,
     marginLeft: 30,
   },
   dropdowncryptoCurrencies: {
@@ -70,5 +70,9 @@ export const useAccordionStyles = makeStyles(theme => ({
     color: 'inherit',
     display: 'inherit',
     marginTop: 2,
+  },
+  quantityIcons: {
+    display: 'flex',
+    flexDirection: 'column',
   },
 }));

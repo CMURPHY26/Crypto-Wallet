@@ -5,8 +5,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import React from 'react';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import React, { useState } from 'react';
 import { currencyFormatter } from '../../helpers/utils';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 const RowTop = ({
   crypto,
@@ -15,6 +22,18 @@ const RowTop = ({
   showQuantityInput,
   onChangeQuantity,
 }) => {
+  const [quantityAction, setQuantityAction] = useState(null);
+
+  const updateQuantity = newQuantity => {
+    if (quantityAction === 'add') {
+      return Number(quantityOwned) + Number(newQuantity);
+    } else if (quantityAction === 'subtract') {
+      return Number(quantityOwned) - Number(newQuantity);
+    } else {
+      return Number(newQuantity);
+    }
+  };
+
   return (
     <AccordionSummary
       classes={{
@@ -45,17 +64,49 @@ const RowTop = ({
             secondary={currencyFormatter.format(quantityOwned * crypto.price)}
           />
           {showQuantityInput[crypto.name] && (
-            <TextField
-              id='quantity-owned-input'
-              variant='standard'
-              type='number'
-              label={crypto.symbol}
-              InputProps={{ inputProps: { min: 0 } }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.amountTextField }}
-              onChange={e => onChangeQuantity(crypto.name, e.target.value)}
-              onClick={e => e.stopPropagation()}
-            />
+            <>
+              <FormControl
+                classes={{ root: classes.quantityTextField }}
+                variant='standard'
+              >
+                <InputLabel htmlFor='input-with-icon-adornment'>
+                  {crypto.symbol}
+                </InputLabel>
+                <Input
+                  id='quantity-owned-input'
+                  variant='standard'
+                  type='number'
+                  label={crypto.symbol}
+                  InputProps={{
+                    min: 0,
+                  }}
+                  InputLabelProps={{ shrink: true }}
+                  onBlur={e =>
+                    onChangeQuantity(crypto.name, updateQuantity(e.target.value))
+                  }
+                  onClick={e => e.stopPropagation()}
+                  startAdornment={
+                    <InputAdornment position='start'>
+                      {quantityAction === 'add' ? <AddIcon /> : <RemoveIcon />}
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+              <div className={classes.quantityIcons}>
+                <AddIcon
+                  onClick={e => {
+                    e.stopPropagation();
+                    setQuantityAction('add');
+                  }}
+                />
+                <RemoveIcon
+                  onClick={e => {
+                    e.stopPropagation();
+                    setQuantityAction('subtract');
+                  }}
+                />
+              </div>
+            </>
           )}
         </>
       </ListItem>
