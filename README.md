@@ -1,6 +1,6 @@
 ## Personal Crypto Tracker Desktop App
 
-This is a super simple tool I built quickly to keep track of my crypto holdings. I have the counts in a personal file as a backup so that I don't rely exclusively on localStorage.
+This is a super simple tool I built quickly to keep track of my crypto holdings.
 
 NOTE: Must use browser extension to bypass CORS
 

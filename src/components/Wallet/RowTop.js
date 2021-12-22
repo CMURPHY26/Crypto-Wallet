@@ -72,9 +72,7 @@ const RowTop = ({
                 classes={{ root: classes.quantityTextField }}
                 variant='standard'
               >
-                <InputLabel htmlFor='input-with-icon-adornment'>
-                  {crypto.symbol}
-                </InputLabel>
+                <InputLabel htmlFor='quantity-owned-input'>{crypto.symbol}</InputLabel>
                 <Input
                   id='quantity-owned-input'
                   variant='standard'

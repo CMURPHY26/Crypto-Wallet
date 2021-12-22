@@ -14,10 +14,10 @@ import {
 import CsvReader from '../CsvReader';
 import RowBottom from './RowBottom';
 import RowTop from './RowTop';
-import { useAccordionStyles } from '../../helpers/styles';
+import { useRowStyles } from '../../helpers/styles';
 
 const Row = ({ cryptoCurrencies }) => {
-  const classes = useAccordionStyles();
+  const classes = useRowStyles();
   const [quantities, setQuantities] = useState({});
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -65,7 +65,7 @@ const Row = ({ cryptoCurrencies }) => {
     return [...cryptosWithQuantity, ...cryptosWithoutQuantity];
   };
 
-  const resetAmounts = () => {
+  const resetQuantities = () => {
     setQuantities({});
   };
 
@@ -107,7 +107,7 @@ const Row = ({ cryptoCurrencies }) => {
   return (
     <>
       <CsvReader classes={classes} setDataFromCsv={setDataFromCsv} />
-      <IconButton aria-label='Reset all quantities' onClick={resetAmounts}>
+      <IconButton aria-label='Reset all quantities' onClick={resetQuantities}>
         <DeleteSweepIcon />
       </IconButton>
       <IconButton className={classes.csvButton} aria-label='Download CSV'>

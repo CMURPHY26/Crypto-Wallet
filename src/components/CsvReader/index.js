@@ -30,7 +30,6 @@ const CsvReader = ({ setDataFromCsv }) => {
         <CSVReader
           ref={buttonRef}
           onFileLoad={handleOnFileLoad}
-          removeButtonColor={true}
           style={{
             dropArea: {
               width: 20,

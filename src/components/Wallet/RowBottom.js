@@ -7,7 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
-import { abbreviateCurrency, formatPercentChangeOverTime } from '../../helpers/utils';
+import { abbreviateNumber, formatPercentChangeOverTime } from '../../helpers/utils';
 
 const RowBottom = ({ crypto, classes, onEditIconClick }) => {
   const {
@@ -25,17 +25,17 @@ const RowBottom = ({ crypto, classes, onEditIconClick }) => {
         <ListItem>
           <ListItemText
             primary='Market Cap'
-            secondary={'$' + abbreviateCurrency(marketCap)}
+            secondary={'$' + abbreviateNumber(marketCap)}
             classes={{ root: classes.dropdowncryptoCurrencies }}
           />
           <ListItemText
             primary='Circulating Supply'
-            secondary={abbreviateCurrency(circulatingSupply)}
+            secondary={abbreviateNumber(circulatingSupply)}
             classes={{ root: classes.dropdowncryptoCurrencies }}
           />
           <ListItemText
             primary='Max Supply'
-            secondary={abbreviateCurrency(maxSupply)}
+            secondary={abbreviateNumber(maxSupply)}
             classes={{ root: classes.dropdowncryptoCurrencies }}
           />
         </ListItem>

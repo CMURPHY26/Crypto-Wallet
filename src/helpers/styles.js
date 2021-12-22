@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-export const useAccordionStyles = makeStyles(theme => ({
+export const useRowStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 700,
