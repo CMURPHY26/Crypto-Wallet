@@ -9,7 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
 import { abbreviateNumber, formatPercentChangeOverTime } from '../../helpers/utils';
 
-const RowBottom = ({ crypto, classes, onEditIconClick }) => {
+const ExpandedContent = ({ crypto, classes, onEditIconClick }) => {
   const {
     marketCap,
     circulatingSupply,
@@ -78,4 +78,4 @@ const RowBottom = ({ crypto, classes, onEditIconClick }) => {
   );
 };
 
-export default RowBottom;
+export default ExpandedContent;

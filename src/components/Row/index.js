@@ -12,8 +12,8 @@ import {
   setItemInLocalStorage,
 } from '../../helpers/utils';
 import CsvReader from '../CsvReader';
-import RowBottom from './RowBottom';
-import RowTop from './RowTop';
+import ExpandedContent from './ExpandedContent';
+import CollapsedContent from './CollapsedContent';
 import { useRowStyles } from '../../helpers/styles';
 
 const Row = ({ cryptoCurrencies }) => {
@@ -139,7 +139,7 @@ const Row = ({ cryptoCurrencies }) => {
                 onChange={handleChange(name)}
                 square
               >
-                <RowTop
+                <CollapsedContent
                   quantityOwned={quantityOwned}
                   showQuantityInput={showQuantityInput}
                   setShowQuantityInput={setShowQuantityInput}
@@ -147,7 +147,7 @@ const Row = ({ cryptoCurrencies }) => {
                   classes={classes}
                   crypto={crypto}
                 />
-                <RowBottom
+                <ExpandedContent
                   quantityOwned={quantityOwned}
                   classes={classes}
                   crypto={crypto}

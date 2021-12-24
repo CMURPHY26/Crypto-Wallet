@@ -14,7 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import React, { useState } from 'react';
 import { currencyFormatter } from '../../helpers/utils';
 
-const RowTop = ({
+const CollapsedContent = ({
   crypto,
   classes,
   quantityOwned,
@@ -117,4 +117,4 @@ const RowTop = ({
   );
 };
 
-export default RowTop;
+export default CollapsedContent;
