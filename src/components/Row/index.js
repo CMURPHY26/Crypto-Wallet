@@ -78,7 +78,7 @@ const Row = ({ cryptoCurrencies }) => {
     await setShowQuantityInput({
       [name]: !showQuantityInput[name],
     });
-    await document.getElementById('quantity-owned-input').focus();
+    document.getElementById('quantity-owned-input').focus();
   };
 
   useEffect(() => {
