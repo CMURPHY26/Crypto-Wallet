@@ -74,10 +74,11 @@ const Row = ({ cryptoCurrencies }) => {
     setShowQuantityInput(false);
   };
 
-  const onEditIconClick = name => {
-    setShowQuantityInput({
+  const onEditIconClick = async name => {
+    await setShowQuantityInput({
       [name]: !showQuantityInput[name],
     });
+    await document.getElementById('quantity-owned-input').focus();
   };
 
   useEffect(() => {
