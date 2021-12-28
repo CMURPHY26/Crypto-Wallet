@@ -108,7 +108,11 @@ const Row = ({ cryptoCurrencies }) => {
   return (
     <>
       <CsvReader classes={classes} setDataFromCsv={setDataFromCsv} />
-      <IconButton aria-label='Reset all quantities' onClick={resetQuantities}>
+      <IconButton
+        sx={{ margin: '0 4px 0 6px' }}
+        aria-label='Reset all quantities'
+        onClick={resetQuantities}
+      >
         <DeleteSweepIcon />
       </IconButton>
       <IconButton className={classes.csvButton} aria-label='Download CSV'>
