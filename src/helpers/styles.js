@@ -4,7 +4,7 @@ export const useRowStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 700,
-    margin: '0 auto',
+    margin: '20px auto',
   },
   avatar: {
     backgroundColor: 'transparent',
@@ -70,19 +70,5 @@ export const useRowStyles = makeStyles(theme => ({
     color: 'inherit',
     display: 'inherit',
     marginTop: 2,
-  },
-  quantityIcons: {
-    display: 'flex',
-    flexDirection: 'column',
-    transform: 'scale(.8)',
-    color: 'grey',
-    '& svg': {
-      width: 20,
-      height: 18,
-      margin: 0,
-      '&:hover': {
-        opacity: 0.5,
-      },
-    },
   },
 }));

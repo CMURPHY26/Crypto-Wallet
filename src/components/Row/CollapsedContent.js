@@ -1,17 +1,13 @@
-import AddIcon from '@mui/icons-material/Add';
-import CheckIcon from '@mui/icons-material/Check';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import RemoveIcon from '@mui/icons-material/Remove';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Avatar from '@mui/material/Avatar';
 import FormControl from '@mui/material/FormControl';
 import Icon from '@mui/material/Icon';
 import Input from '@mui/material/Input';
-import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import React, { useState } from 'react';
+import React from 'react';
 import { currencyFormatter } from '../../helpers/utils';
 
 const CollapsedContent = ({
@@ -19,22 +15,23 @@ const CollapsedContent = ({
   classes,
   quantityOwned,
   showQuantityInput,
-  setShowQuantityInput,
   onChangeQuantity,
 }) => {
-  const [quantityAction, setQuantityAction] = useState('add');
-
-  const updateQuantity = newQuantity => {
+  const updateQuantity = inputValue => {
     quantityOwned = Number(quantityOwned);
-    newQuantity = Number(newQuantity);
 
-    if (quantityAction === 'add') {
-      return quantityOwned + newQuantity;
-    } else if (quantityAction === 'subtract') {
-      return quantityOwned - newQuantity;
+    if (inputValue.includes('+')) {
+      return Number(quantityOwned) + Number(inputValue.replace('+', ''));
+    } else if (inputValue.includes('-')) {
+      return Number(quantityOwned) - Number(inputValue.replace('-', ''));
     } else {
-      return newQuantity;
+      return inputValue;
     }
+  };
+
+  const onChange = e => {
+    e.target.value.length &&
+      onChangeQuantity(crypto.name, updateQuantity(e.target.value));
   };
 
   return (
@@ -78,37 +75,11 @@ const CollapsedContent = ({
                   variant='standard'
                   type='number'
                   label={crypto.symbol}
-                  onBlur={e =>
-                    onChangeQuantity(crypto.name, updateQuantity(e.target.value))
-                  }
+                  onBlur={e => onChange(e)}
+                  onKeyDown={e => e.key === 'Enter' && onChange(e)}
                   onClick={e => e.stopPropagation()}
-                  startAdornment={
-                    <InputAdornment position='start'>
-                      {quantityAction === 'add' ? <AddIcon /> : <RemoveIcon />}
-                    </InputAdornment>
-                  }
                 />
               </FormControl>
-              <div className={classes.quantityIcons}>
-                <AddIcon
-                  onClick={e => {
-                    e.stopPropagation();
-                    setQuantityAction('add');
-                  }}
-                />
-                <RemoveIcon
-                  onClick={e => {
-                    e.stopPropagation();
-                    setQuantityAction('subtract');
-                  }}
-                />
-                <CheckIcon
-                  onClick={e => {
-                    e.stopPropagation();
-                    setShowQuantityInput(false);
-                  }}
-                />
-              </div>
             </>
           )}
         </>
