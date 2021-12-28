@@ -62,7 +62,7 @@ const ExpandedContent = ({ crypto, classes, onEditIconClick }) => {
           <IconButton
             target='_blank'
             aria-label='Buy on Coinbase'
-            href={`https://www.coinbase.com/price/${crypto.name}`}
+            href={`https://www.coinbase.com/price/${crypto.name.toLowerCase()}`}
           >
             <StoreIcon />
           </IconButton>
