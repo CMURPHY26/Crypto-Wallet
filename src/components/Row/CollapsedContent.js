@@ -15,6 +15,7 @@ const CollapsedContent = ({
   classes,
   quantityOwned,
   showQuantityInput,
+  setShowQuantityInput,
   onChangeQuantity,
 }) => {
   const updateQuantity = inputValue => {
@@ -32,6 +33,7 @@ const CollapsedContent = ({
   const onChange = e => {
     e.target.value.length &&
       onChangeQuantity(crypto.name, updateQuantity(e.target.value));
+    setShowQuantityInput(false);
   };
 
   return (
