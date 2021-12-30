@@ -6,14 +6,14 @@ import { cryptoIcons } from './helpers/icons';
 import Row from './components/Row';
 
 const App = () => {
-  const [cryptos, setCryptos] = useState({});
+  const [cryptoData, setCryptoData] = useState({});
   const shouldRefresh = false;
   const refreshSeconds = 10;
   let cryptoCurrencies = [];
 
   const getPrices = () => {
     fetchCryptoData().then(response => {
-      setCryptos(response.data);
+      setCryptoData(response.data);
     });
   };
 
@@ -29,11 +29,11 @@ const App = () => {
     }
   }, []);
 
-  if (!cryptos.length) {
+  if (!cryptoData.length) {
     return null;
   }
 
-  cryptos.map(crypto => {
+  cryptoData.map(crypto => {
     const {
       cmc_rank: rank,
       name,
