@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 700,
@@ -66,9 +66,5 @@ export const useStyles = makeStyles({
     marginRight: 20,
     width: 100,
   },
-  csvIcon: {
-    color: 'inherit',
-    display: 'inherit',
-    marginTop: 2,
-  },
-});
+  csvIcon: {},
+}));

@@ -4,7 +4,6 @@ import InputLabel from '@mui/material/InputLabel';
 import React from 'react';
 
 const QuantityForm = ({
-  classes,
   crypto,
   onChangeQuantity,
   quantityOwned,
@@ -29,7 +28,7 @@ const QuantityForm = ({
   };
   return (
     <>
-      <FormControl classes={{ root: classes.quantityTextField }} variant='standard'>
+      <FormControl sx={{ width: 110, marginLeft: 30 }} variant='standard'>
         <InputLabel htmlFor='quantity-owned-input'>{crypto.symbol}</InputLabel>
         <Input
           id='quantity-owned-input'

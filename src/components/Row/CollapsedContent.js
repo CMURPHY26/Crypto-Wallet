@@ -22,20 +22,13 @@ const CollapsedContent = ({
 }) => {
   return (
     <AccordionSummary
-      classes={{
-        content: classes.summary,
-        expandIcon: classes.expandIcon,
-        collapseIcon: classes.collapseIcon,
-      }}
+      classes={{ content: classes.summary }}
       expandIcon={<ExpandMoreIcon />}
       id={`${crypto.name}-header`}
     >
-      <ListItem className={classes.listItemTop}>
+      <ListItem>
         {showAllCoins && (
-          <IconButton
-            sx={{ margin: '0 4px 0 6px' }}
-            onClick={() => toggleCoinVisibility(crypto.name)}
-          >
+          <IconButton onClick={() => toggleCoinVisibility(crypto.name)}>
             <CheckCircleOutlineIcon />
           </IconButton>
         )}
@@ -46,11 +39,12 @@ const CollapsedContent = ({
         )}
         <>
           <ListItemText
+            sx={{ textAlign: 'left' }}
             primary={crypto.name}
             secondary={currencyFormatter.format(crypto.price)}
           />
           <ListItemText
-            className={classes.originalQuantity}
+            sx={{ textAlign: 'right' }}
             primary={new Intl.NumberFormat('en-US', {
               maximumSignificantDigits: 7,
             }).format(quantityOwned)}
@@ -58,7 +52,6 @@ const CollapsedContent = ({
           />
           {showQuantityInput[crypto.name] && (
             <QuantityForm
-              classes={classes}
               crypto={crypto}
               setShowQuantityInput={setShowQuantityInput}
               onChangeQuantity={onChangeQuantity}

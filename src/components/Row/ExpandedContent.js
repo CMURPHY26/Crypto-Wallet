@@ -9,7 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
 import { abbreviateNumber, formatPercentChangeOverTime } from '../../helpers/utils';
 
-const ExpandedContent = ({ crypto, classes, onEditIconClick }) => {
+const ExpandedContent = ({ classes, crypto, onEditIconClick }) => {
   const {
     circulatingSupply,
     marketCap,
@@ -21,22 +21,22 @@ const ExpandedContent = ({ crypto, classes, onEditIconClick }) => {
 
   return (
     <AccordionDetails>
-      <List className={classes.detailsList}>
+      <List sx={{ width: '100%' }}>
         <ListItem>
           <ListItemText
             primary='Market Cap'
             secondary={'$' + abbreviateNumber(marketCap)}
-            classes={{ root: classes.dropdowncryptoCurrencies }}
+            sx={{ flex: 1 }}
           />
           <ListItemText
             primary='Circulating Supply'
             secondary={abbreviateNumber(circulatingSupply)}
-            classes={{ root: classes.dropdowncryptoCurrencies }}
+            sx={{ flex: 1 }}
           />
           <ListItemText
             primary='Max Supply'
             secondary={abbreviateNumber(maxSupply)}
-            classes={{ root: classes.dropdowncryptoCurrencies }}
+            sx={{ flex: 1 }}
           />
         </ListItem>
         <Divider />
@@ -44,17 +44,17 @@ const ExpandedContent = ({ crypto, classes, onEditIconClick }) => {
           <ListItemText
             primary='1 Hour'
             secondary={formatPercentChangeOverTime(percentChange1hour)}
-            classes={{ root: classes.dropdowncryptoCurrencies }}
+            sx={{ flex: 1 }}
           />
           <ListItemText
             primary='24 Hours'
             secondary={formatPercentChangeOverTime(percentChange1day)}
-            classes={{ root: classes.dropdowncryptoCurrencies }}
+            sx={{ flex: 1 }}
           />
           <ListItemText
             primary='1 Week'
             secondary={formatPercentChangeOverTime(percentChange1week)}
-            classes={{ root: classes.dropdowncryptoCurrencies }}
+            sx={{ flex: 1 }}
           />
         </ListItem>
         <Divider />

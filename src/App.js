@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
+import Header from './components/Header/Header';
+import Row from './components/Row';
 import { fetchCryptoData } from './helpers/apis';
 import { cryptoIcons } from './helpers/icons';
-import Row from './components/Row';
-import Header from './components/Header/Header';
-import { useStyles } from './helpers/styles';
 
 const App = () => {
   const [cryptoData, setCryptoData] = useState({});
   const [visibleCoins, setVisibleCoins] = useState({});
   const [quantities, setQuantities] = useState({});
   const [dataFromCsv, setDataFromCsv] = useState([]);
-  const classes = useStyles();
   const shouldRefresh = false;
   const refreshSeconds = 10;
   let cryptoCurrencies = [];
@@ -125,7 +122,6 @@ const App = () => {
         getPrices={getPrices}
         resetQuantities={resetQuantities}
         csvData={csvData}
-        classes={classes}
       />
       <Row
         quantities={quantities}
@@ -133,7 +129,6 @@ const App = () => {
         setVisibleCoins={setVisibleCoins}
         visibleCoins={visibleCoins}
         cryptoCurrencies={sortedCryptosByMarketCap}
-        classes={classes}
       />
     </>
   );

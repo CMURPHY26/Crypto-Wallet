@@ -8,13 +8,13 @@ import CollapsedContent from './CollapsedContent';
 import ExpandedContent from './ExpandedContent';
 
 const Row = ({
-  classes,
   cryptoCurrencies,
   quantities,
   setQuantities,
   setVisibleCoins,
   visibleCoins,
 }) => {
+  const classes = useStyles();
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [totalWalletValue, setTotalWalletValue] = useState(0);
@@ -68,6 +68,11 @@ const Row = ({
   };
 
   useEffect(() => {
+    const totalSum = Object.values?.(quantities).reduce(
+      (acc, crypto) => acc + crypto.newQuantity * crypto.price,
+      0
+    );
+    setTotalWalletValue(totalSum);
     setSortedCryptoCurrencies(moveOwnedCryptosToTop());
   }, [cryptoCurrencies, quantities]);
 
@@ -79,25 +84,12 @@ const Row = ({
     setItemInLocalStorage('quantities', quantities);
   }, [quantities]);
 
-  useEffect(() => {
-    const totalSum = Object.values?.(quantities).reduce(
-      (acc, crypto) => acc + crypto.newQuantity * crypto.price,
-      0
-    );
-    setTotalWalletValue(totalSum);
-  }, [quantities, cryptoCurrencies]);
-
   return (
     <>
-      {/* {totalWalletValue > 0 && (
-        <Typography className={classes.totalWalletValue} variant='h5'>
-          {currencyFormatter.format(totalWalletValue)}
-        </Typography>
-      )} */}
       <Button variant='contained' onClick={() => setShowAllCoins(!showAllCoins)}>
         Toggle Displayed Coins
       </Button>
-      <List className={classes.root}>
+      <List sx={{ width: '100%', maxWidth: 700, margin: '20px auto' }}>
         {sortedCryptoCurrencies?.map(crypto => {
           const { name, originalQuantity } = crypto;
           const quantityOwned = quantities[name]?.newQuantity ?? originalQuantity;
@@ -111,19 +103,19 @@ const Row = ({
                 square
               >
                 <CollapsedContent
+                  classes={classes}
                   quantityOwned={quantityOwned}
                   showQuantityInput={showQuantityInput}
                   setShowQuantityInput={setShowQuantityInput}
                   onChangeQuantity={onChangeQuantity}
-                  classes={classes}
                   crypto={crypto}
                   visibleCoins={visibleCoins}
                   toggleCoinVisibility={toggleCoinVisibility}
                   showAllCoins={showAllCoins}
                 />
                 <ExpandedContent
-                  quantityOwned={quantityOwned}
                   classes={classes}
+                  quantityOwned={quantityOwned}
                   crypto={crypto}
                   onEditIconClick={onEditIconClick}
                 />
