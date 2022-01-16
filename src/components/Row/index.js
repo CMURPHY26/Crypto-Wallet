@@ -15,14 +15,17 @@ import CsvReader from '../CsvReader';
 import ExpandedContent from './ExpandedContent';
 import CollapsedContent from './CollapsedContent';
 import { useRowStyles } from '../../helpers/styles';
+import CoinSelector from '../Coins/CoinSelector';
+import { Button } from '@mui/material';
 
-const Row = ({ cryptoCurrencies }) => {
+const Row = ({ cryptoCurrencies, setVisibleCoins, visibleCoins }) => {
   const classes = useRowStyles();
   const [quantities, setQuantities] = useState({});
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [totalWalletValue, setTotalWalletValue] = useState(0);
   const [dataFromCsv, setDataFromCsv] = useState([]);
+  const [showAllCoins, setShowAllCoins] = useState(true);
   const [sortedCryptoCurrencies, setSortedCryptoCurrencies] = useState(cryptoCurrencies);
   const getPrice = name => cryptoCurrencies.find(crypto => crypto.name == name)?.price;
 
@@ -51,7 +54,8 @@ const Row = ({ cryptoCurrencies }) => {
   }, [dataFromCsv]);
 
   const moveOwnedCryptosToTop = () => {
-    const cryptosWithQuantity = cryptoCurrencies.filter(
+    const displayedCryptos = cryptoCurrencies.filter(crypto => !!crypto.visible);
+    const cryptosWithQuantity = displayedCryptos.filter(
       crypto => quantities[crypto.name]
     );
     cryptosWithQuantity.sort(
@@ -59,7 +63,7 @@ const Row = ({ cryptoCurrencies }) => {
         b.price * quantities[b.name].newQuantity -
         a.price * quantities[a.name].newQuantity
     );
-    const cryptosWithoutQuantity = cryptoCurrencies.filter(
+    const cryptosWithoutQuantity = displayedCryptos.filter(
       crypto => !quantities[crypto.name]
     );
     return [...cryptosWithQuantity, ...cryptosWithoutQuantity];
@@ -79,6 +83,13 @@ const Row = ({ cryptoCurrencies }) => {
       [name]: !showQuantityInput[name],
     });
     document.getElementById('quantity-owned-input').focus();
+  };
+
+  const toggleCoinVisibility = name => {
+    setVisibleCoins({
+      ...visibleCoins,
+      [name]: !cryptoCurrencies.find(crypto => crypto.name === name).visible,
+    });
   };
 
   useEffect(() => {
@@ -131,6 +142,9 @@ const Row = ({ cryptoCurrencies }) => {
           {currencyFormatter.format(totalWalletValue)}
         </Typography>
       )} */}
+      <Button variant='contained' onClick={() => setShowAllCoins(!showAllCoins)}>
+        Toggle Displayed Coins
+      </Button>
       <List className={classes.root}>
         {sortedCryptoCurrencies?.map(crypto => {
           const { name, originalQuantity } = crypto;
@@ -151,6 +165,9 @@ const Row = ({ cryptoCurrencies }) => {
                   onChangeQuantity={onChangeQuantity}
                   classes={classes}
                   crypto={crypto}
+                  visibleCoins={visibleCoins}
+                  toggleCoinVisibility={toggleCoinVisibility}
+                  showAllCoins={showAllCoins}
                 />
                 <ExpandedContent
                   quantityOwned={quantityOwned}

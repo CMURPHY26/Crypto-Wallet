@@ -7,6 +7,7 @@ import Row from './components/Row';
 
 const App = () => {
   const [cryptoData, setCryptoData] = useState({});
+  const [visibleCoins, setVisibleCoins] = useState({});
   const shouldRefresh = false;
   const refreshSeconds = 10;
   let cryptoCurrencies = [];
@@ -73,6 +74,7 @@ const App = () => {
             price,
             icon: cryptoIcons?.[slug] ?? cryptoIcons.genericCryptoIcon,
             originalQuantity: 0,
+            visible: visibleCoins[name] ?? true,
             extraDetails: {
               circulatingSupply,
               maxSupply: maxSupply ?? 'N/A',
@@ -95,7 +97,11 @@ const App = () => {
       <IconButton aria-label='Update Prices' onClick={getPrices}>
         <RefreshIcon />
       </IconButton>
-      <Row cryptoCurrencies={sortedCryptosByMarketCap} />
+      <Row
+        setVisibleCoins={setVisibleCoins}
+        visibleCoins={visibleCoins}
+        cryptoCurrencies={sortedCryptosByMarketCap}
+      />
     </>
   );
 };
