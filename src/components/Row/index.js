@@ -2,19 +2,19 @@ import { Button } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import List from '@mui/material/List';
 import React, { useEffect, useState } from 'react';
-import { useRowStyles } from '../../helpers/styles';
+import { useStyles } from '../../helpers/styles';
 import { handleItemInLocalStorage, setItemInLocalStorage } from '../../helpers/utils';
 import CollapsedContent from './CollapsedContent';
 import ExpandedContent from './ExpandedContent';
 
 const Row = ({
+  classes,
   cryptoCurrencies,
   quantities,
   setQuantities,
   setVisibleCoins,
   visibleCoins,
 }) => {
-  const classes = useRowStyles();
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [totalWalletValue, setTotalWalletValue] = useState(0);

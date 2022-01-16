@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
-export const useRowStyles = makeStyles(theme => ({
+export const useStyles = makeStyles({
   root: {
     width: '100%',
     maxWidth: 700,
@@ -71,4 +71,4 @@ export const useRowStyles = makeStyles(theme => ({
     display: 'inherit',
     marginTop: 2,
   },
-}));
+});
