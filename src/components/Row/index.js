@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import List from '@mui/material/List';
 import React, { useEffect, useState } from 'react';
-import { useStyles } from '../../helpers/styles';
+import { useStyles } from '../../helpers/styleOverrides';
 import { handleItemInLocalStorage, setItemInLocalStorage } from '../../helpers/utils';
 import CollapsedContent from './CollapsedContent';
 import ExpandedContent from './ExpandedContent';
@@ -18,9 +18,26 @@ const Row = ({
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [totalWalletValue, setTotalWalletValue] = useState(0);
-  const [showAllCoins, setShowAllCoins] = useState(true);
+  const [showCoinToggler, setShowCoinToggler] = useState(false);
   const [sortedCryptoCurrencies, setSortedCryptoCurrencies] = useState(cryptoCurrencies);
   const getPrice = name => cryptoCurrencies.find(crypto => crypto.name == name)?.price;
+
+  useEffect(() => {
+    const totalSum = Object.values?.(quantities).reduce(
+      (acc, crypto) => acc + crypto.newQuantity * crypto.price,
+      0
+    );
+    setTotalWalletValue(totalSum);
+    setSortedCryptoCurrencies(moveOwnedCryptosToTop());
+  }, [cryptoCurrencies, quantities]);
+
+  useEffect(() => {
+    handleItemInLocalStorage(setQuantities, 'quantities');
+  }, []);
+
+  useEffect(() => {
+    setItemInLocalStorage('quantities', quantities);
+  }, [quantities]);
 
   const onChangeQuantity = (name, newQuantity) => {
     setQuantities({
@@ -67,27 +84,10 @@ const Row = ({
     });
   };
 
-  useEffect(() => {
-    const totalSum = Object.values?.(quantities).reduce(
-      (acc, crypto) => acc + crypto.newQuantity * crypto.price,
-      0
-    );
-    setTotalWalletValue(totalSum);
-    setSortedCryptoCurrencies(moveOwnedCryptosToTop());
-  }, [cryptoCurrencies, quantities]);
-
-  useEffect(() => {
-    handleItemInLocalStorage(setQuantities, 'quantities');
-  }, []);
-
-  useEffect(() => {
-    setItemInLocalStorage('quantities', quantities);
-  }, [quantities]);
-
   return (
     <>
-      <Button variant='contained' onClick={() => setShowAllCoins(!showAllCoins)}>
-        Toggle Displayed Coins
+      <Button variant='contained' onClick={() => setShowCoinToggler(!showCoinToggler)}>
+        Toggle Coins
       </Button>
       <List sx={{ width: '100%', maxWidth: 700, margin: '20px auto' }}>
         {sortedCryptoCurrencies?.map(crypto => {
@@ -111,7 +111,7 @@ const Row = ({
                   crypto={crypto}
                   visibleCoins={visibleCoins}
                   toggleCoinVisibility={toggleCoinVisibility}
-                  showAllCoins={showAllCoins}
+                  showCoinToggler={showCoinToggler}
                 />
                 <ExpandedContent
                   classes={classes}

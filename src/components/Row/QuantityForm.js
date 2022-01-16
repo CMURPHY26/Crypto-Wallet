@@ -10,22 +10,22 @@ const QuantityForm = ({
   setShowQuantityInput,
 }) => {
   const updateQuantity = inputValue => {
-    quantityOwned = Number(quantityOwned);
-
-    if (inputValue.includes('+')) {
-      return Number(quantityOwned) + Number(inputValue.replace('+', ''));
+    if (+inputValue.includes('+')) {
+      return +quantityOwned + +inputValue.replace('+', '');
     } else if (inputValue.includes('-')) {
-      return Number(quantityOwned) - Number(inputValue.replace('-', ''));
+      return +quantityOwned - +inputValue.replace('-', '');
     } else {
-      return inputValue;
+      return +inputValue;
     }
   };
 
-  const onChange = e => {
-    e.target.value.length &&
+  const changeQuantity = e => {
+    if (e.target.value.length) {
       onChangeQuantity(crypto.name, updateQuantity(e.target.value));
-    setShowQuantityInput(false);
+      setShowQuantityInput(false);
+    }
   };
+
   return (
     <>
       <FormControl sx={{ width: 110, marginLeft: 30 }} variant='standard'>
@@ -35,8 +35,8 @@ const QuantityForm = ({
           variant='standard'
           type='number'
           label={crypto.symbol}
-          onBlur={e => onChange(e)}
-          onKeyDown={e => e.key === 'Enter' && onChange(e)}
+          onBlur={e => changeQuantity(e)}
+          onKeyDown={e => e.key === 'Enter' && changeQuantity(e)}
           onClick={e => e.stopPropagation()}
         />
       </FormControl>

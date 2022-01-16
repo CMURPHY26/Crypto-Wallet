@@ -16,7 +16,7 @@ const CollapsedContent = ({
   onChangeQuantity,
   quantityOwned,
   setShowQuantityInput,
-  showAllCoins,
+  showCoinToggler,
   showQuantityInput,
   toggleCoinVisibility,
 }) => {
@@ -27,14 +27,19 @@ const CollapsedContent = ({
       id={`${crypto.name}-header`}
     >
       <ListItem>
-        {showAllCoins && (
-          <IconButton onClick={() => toggleCoinVisibility(crypto.name)}>
+        {showCoinToggler && (
+          <IconButton
+            onClick={e => {
+              e.stopPropagation();
+              toggleCoinVisibility(crypto.name);
+            }}
+          >
             <CheckCircleOutlineIcon />
           </IconButton>
         )}
         {crypto.icon && (
           <Avatar className={classes.avatar}>
-            <Icon className={classes.icon}>{crypto.icon}</Icon>
+            <Icon className={classes.avatarIcon}>{crypto.icon}</Icon>
           </Avatar>
         )}
         <>

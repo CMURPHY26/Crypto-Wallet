@@ -10,6 +10,7 @@ const Header = ({ quantities, getPrices, resetQuantities, setDataFromCsv }) => {
   const csvData = Object.keys(quantities)?.map(quantity => {
     return [...[quantity], quantities[quantity].newQuantity];
   });
+
   return (
     <>
       <IconButton aria-label='Update Prices' onClick={getPrices}>

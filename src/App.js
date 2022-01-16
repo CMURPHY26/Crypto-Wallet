@@ -5,13 +5,30 @@ import { fetchCryptoData } from './helpers/apis';
 import { cryptoIcons } from './helpers/icons';
 
 const App = () => {
+  const [cryptoCurrencies, setCryptoCurrencies] = useState([]);
   const [cryptoData, setCryptoData] = useState({});
   const [dataFromCsv, setDataFromCsv] = useState([]);
   const [visibleCoins, setVisibleCoins] = useState({});
   const [quantities, setQuantities] = useState({});
-  const shouldRefresh = false;
-  const refreshSeconds = 10;
-  let cryptoCurrencies = [];
+  const refresh = { enabled: false, seconds: 10 };
+
+  useEffect(() => {
+    getPrices();
+
+    if (refresh.enabled) {
+      autoRefreshPrices();
+    }
+  }, []);
+
+  useEffect(() => {
+    syncDataFromCsv();
+  }, [dataFromCsv]);
+
+  useEffect(() => {
+    if (cryptoData.length) {
+      formatCryptoData();
+    }
+  }, [cryptoData, visibleCoins]);
 
   const getPrices = () => {
     fetchCryptoData().then(response => {
@@ -19,112 +36,86 @@ const App = () => {
     });
   };
 
-  useEffect(() => {
-    getPrices();
+  const autoRefreshPrices = () => {
+    const interval = setInterval(() => {
+      getPrices();
+    }, refresh.seconds * 1000);
 
-    if (shouldRefresh) {
-      const interval = setInterval(() => {
-        getPrices();
-      }, refreshSeconds * 1000);
+    return () => clearInterval(interval);
+  };
 
-      return () => clearInterval(interval);
-    }
-  }, []);
+  const syncDataFromCsv = () => {
+    const csvItems = {};
 
-  useEffect(() => {
-    let items = {};
     dataFromCsv.map(item => {
       const name = Object.keys(item);
       const quantity = item[name];
 
-      items[name] = {
+      csvItems[name] = {
         newQuantity: quantity,
         price: cryptoCurrencies.find(crypto => crypto.name == name)?.price,
       };
     });
-    setQuantities(items);
-  }, [dataFromCsv]);
+
+    setQuantities(csvItems);
+  };
 
   const resetQuantities = () => {
     setQuantities({});
   };
 
-  if (!cryptoData.length) {
-    return null;
-  }
+  const formatCryptoData = () => {
+    const cryptos = [];
+    cryptoData.map(crypto => {
+      const prices = crypto.quote.USD;
+      const stablecoins = ['USDT', 'USDC', 'BUSD', 'DAI', 'UST'];
+      const bitcoinDuplicates = ['WBTC', 'BTCB'];
+      const excludedCoins = [...stablecoins, ...bitcoinDuplicates];
 
-  cryptoData.map(crypto => {
-    const {
-      cmc_rank: rank,
-      name,
-      quote,
-      slug,
-      circulating_supply: circulatingSupply,
-      max_supply: maxSupply,
-      symbol,
-    } = crypto;
-    const priceObj = quote.USD;
-    const {
-      price,
-      percent_change_1h: percentChange1hour,
-      percent_change_24h: percentChange1day,
-      percent_change_7d: percentChange1week,
-      market_cap: marketCap,
-    } = priceObj;
-    const stablecoins = ['USDT', 'USDC', 'BUSD', 'DAI', 'UST'];
-    const shitcoins = ['SHIB', 'DOGE', 'VET'];
-    const boringCoins = ['AVAX', 'LUNA', 'CRO', 'HBAR', 'AXS', 'NEAR', 'FTT'];
-    const bitcoinDuplicates = ['WBTC', 'BTCB'];
-    const excludedCoins = [
-      ...stablecoins,
-      ...shitcoins,
-      ...boringCoins,
-      ...bitcoinDuplicates,
-    ];
-
-    if (!excludedCoins.includes(symbol)) {
-      rank < 36 &&
-        (cryptoCurrencies = [
-          ...cryptoCurrencies,
-          {
-            symbol,
-            name,
-            rank,
-            price,
-            icon: cryptoIcons?.[slug] ?? cryptoIcons.genericCryptoIcon,
+      if (!excludedCoins.includes(crypto.symbol)) {
+        if (crypto.cmc_rank < 60) {
+          cryptos.push({
+            symbol: crypto.symbol,
+            name: crypto.name,
+            rank: crypto.cmc_rank,
+            price: prices.price,
+            icon: cryptoIcons?.[crypto.slug] ?? cryptoIcons.genericCryptoIcon,
             originalQuantity: 0,
-            visible: visibleCoins[name] ?? true,
+            visible: visibleCoins[crypto.name] ?? true,
             extraDetails: {
-              circulatingSupply,
-              maxSupply: maxSupply ?? 'N/A',
-              marketCap,
-              percentChange1hour,
-              percentChange1day,
-              percentChange1week,
+              circulatingSupply: crypto.circulating_supply,
+              maxSupply: crypto.max_supply ?? 'N/A',
+              marketCap: prices.market_cap,
+              percentChange1hour: prices.percent_change_1h,
+              percentChange1day: prices.percent_change_24h,
+              percentChange1week: prices.percent_change_7d,
             },
-          },
-        ]);
-    }
-  });
+          });
+        }
+      }
+    });
 
-  const sortedCryptosByMarketCap = cryptoCurrencies.sort((a, b) => {
-    return b.extraDetails.marketCap - a.extraDetails.marketCap;
-  });
+    cryptos.sort((a, b) => {
+      return b.extraDetails.marketCap - a.extraDetails.marketCap;
+    });
+
+    setCryptoCurrencies(cryptos);
+  };
 
   return (
     <>
       <Header
-        quantities={quantities}
-        setDataFromCsv={setDataFromCsv}
         getPrices={getPrices}
+        quantities={quantities}
         resetQuantities={resetQuantities}
+        setDataFromCsv={setDataFromCsv}
       />
       <Row
+        cryptoCurrencies={cryptoCurrencies}
         quantities={quantities}
         setQuantities={setQuantities}
         setVisibleCoins={setVisibleCoins}
         visibleCoins={visibleCoins}
-        cryptoCurrencies={sortedCryptosByMarketCap}
       />
     </>
   );
