@@ -1,30 +1,23 @@
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import DownloadIcon from '@mui/icons-material/Download';
-import Accordion from '@mui/material/Accordion';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import React, { useEffect, useState } from 'react';
-import { CSVLink } from 'react-csv';
-import {
-  currencyFormatter,
-  handleItemInLocalStorage,
-  setItemInLocalStorage,
-} from '../../helpers/utils';
-import CsvReader from '../CsvReader';
-import ExpandedContent from './ExpandedContent';
-import CollapsedContent from './CollapsedContent';
-import { useRowStyles } from '../../helpers/styles';
-import CoinSelector from '../Coins/CoinSelector';
 import { Button } from '@mui/material';
+import Accordion from '@mui/material/Accordion';
+import List from '@mui/material/List';
+import React, { useEffect, useState } from 'react';
+import { useRowStyles } from '../../helpers/styles';
+import { handleItemInLocalStorage, setItemInLocalStorage } from '../../helpers/utils';
+import CollapsedContent from './CollapsedContent';
+import ExpandedContent from './ExpandedContent';
 
-const Row = ({ cryptoCurrencies, setVisibleCoins, visibleCoins }) => {
+const Row = ({
+  cryptoCurrencies,
+  quantities,
+  setQuantities,
+  setVisibleCoins,
+  visibleCoins,
+}) => {
   const classes = useRowStyles();
-  const [quantities, setQuantities] = useState({});
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [totalWalletValue, setTotalWalletValue] = useState(0);
-  const [dataFromCsv, setDataFromCsv] = useState([]);
   const [showAllCoins, setShowAllCoins] = useState(true);
   const [sortedCryptoCurrencies, setSortedCryptoCurrencies] = useState(cryptoCurrencies);
   const getPrice = name => cryptoCurrencies.find(crypto => crypto.name == name)?.price;
@@ -38,20 +31,6 @@ const Row = ({ cryptoCurrencies, setVisibleCoins, visibleCoins }) => {
       },
     });
   };
-
-  useEffect(() => {
-    let items = {};
-    dataFromCsv.map(item => {
-      const name = Object.keys(item);
-      const quantity = item[name];
-
-      items[name] = {
-        newQuantity: quantity,
-        price: getPrice(name),
-      };
-    });
-    setQuantities(items);
-  }, [dataFromCsv]);
 
   const moveOwnedCryptosToTop = () => {
     const displayedCryptos = cryptoCurrencies.filter(crypto => !!crypto.visible);
@@ -67,10 +46,6 @@ const Row = ({ cryptoCurrencies, setVisibleCoins, visibleCoins }) => {
       crypto => !quantities[crypto.name]
     );
     return [...cryptosWithQuantity, ...cryptosWithoutQuantity];
-  };
-
-  const resetQuantities = () => {
-    setQuantities({});
   };
 
   const handleChange = panel => (event, isExpanded) => {
@@ -112,31 +87,8 @@ const Row = ({ cryptoCurrencies, setVisibleCoins, visibleCoins }) => {
     setTotalWalletValue(totalSum);
   }, [quantities, cryptoCurrencies]);
 
-  const csvData = Object.keys(quantities)?.map(quantity => {
-    return [...[quantity], quantities[quantity].newQuantity];
-  });
-
   return (
     <>
-      <CsvReader classes={classes} setDataFromCsv={setDataFromCsv} />
-      <IconButton
-        sx={{ margin: '0 4px 0 6px' }}
-        aria-label='Reset all quantities'
-        onClick={resetQuantities}
-      >
-        <DeleteSweepIcon />
-      </IconButton>
-      <IconButton className={classes.csvButton} aria-label='Download CSV'>
-        <CSVLink
-          filename={`crypto-wallet-${new Intl.DateTimeFormat('en-US').format(
-            Date.now()
-          )}.csv`}
-          className={classes.csvIcon}
-          data={csvData}
-        >
-          <DownloadIcon />
-        </CSVLink>
-      </IconButton>
       {/* {totalWalletValue > 0 && (
         <Typography className={classes.totalWalletValue} variant='h5'>
           {currencyFormatter.format(totalWalletValue)}

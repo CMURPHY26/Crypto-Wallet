@@ -1,45 +1,25 @@
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Avatar from '@mui/material/Avatar';
-import FormControl from '@mui/material/FormControl';
 import Icon from '@mui/material/Icon';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
+import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
 import { currencyFormatter } from '../../helpers/utils';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import IconButton from '@mui/material/IconButton';
+import QuantityForm from './QuantityForm';
 
 const CollapsedContent = ({
-  crypto,
   classes,
-  quantityOwned,
-  showQuantityInput,
-  setShowQuantityInput,
+  crypto,
   onChangeQuantity,
-  toggleCoinVisibility,
+  quantityOwned,
+  setShowQuantityInput,
   showAllCoins,
+  showQuantityInput,
+  toggleCoinVisibility,
 }) => {
-  const updateQuantity = inputValue => {
-    quantityOwned = Number(quantityOwned);
-
-    if (inputValue.includes('+')) {
-      return Number(quantityOwned) + Number(inputValue.replace('+', ''));
-    } else if (inputValue.includes('-')) {
-      return Number(quantityOwned) - Number(inputValue.replace('-', ''));
-    } else {
-      return inputValue;
-    }
-  };
-
-  const onChange = e => {
-    e.target.value.length &&
-      onChangeQuantity(crypto.name, updateQuantity(e.target.value));
-    setShowQuantityInput(false);
-  };
-
   return (
     <AccordionSummary
       classes={{
@@ -77,23 +57,13 @@ const CollapsedContent = ({
             secondary={currencyFormatter.format(quantityOwned * crypto.price)}
           />
           {showQuantityInput[crypto.name] && (
-            <>
-              <FormControl
-                classes={{ root: classes.quantityTextField }}
-                variant='standard'
-              >
-                <InputLabel htmlFor='quantity-owned-input'>{crypto.symbol}</InputLabel>
-                <Input
-                  id='quantity-owned-input'
-                  variant='standard'
-                  type='number'
-                  label={crypto.symbol}
-                  onBlur={e => onChange(e)}
-                  onKeyDown={e => e.key === 'Enter' && onChange(e)}
-                  onClick={e => e.stopPropagation()}
-                />
-              </FormControl>
-            </>
+            <QuantityForm
+              classes={classes}
+              crypto={crypto}
+              setShowQuantityInput={setShowQuantityInput}
+              onChangeQuantity={onChangeQuantity}
+              quantityOwned={quantityOwned}
+            />
           )}
         </>
       </ListItem>

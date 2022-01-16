@@ -11,8 +11,8 @@ import { abbreviateNumber, formatPercentChangeOverTime } from '../../helpers/uti
 
 const ExpandedContent = ({ crypto, classes, onEditIconClick }) => {
   const {
-    marketCap,
     circulatingSupply,
+    marketCap,
     maxSupply,
     percentChange1hour,
     percentChange1day,

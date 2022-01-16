@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import RefreshIcon from '@mui/icons-material/Refresh';
 import IconButton from '@mui/material/IconButton';
 import { fetchCryptoData } from './helpers/apis';
 import { cryptoIcons } from './helpers/icons';
 import Row from './components/Row';
+import Header from './components/Header/Header';
 
 const App = () => {
   const [cryptoData, setCryptoData] = useState({});
   const [visibleCoins, setVisibleCoins] = useState({});
+  const [quantities, setQuantities] = useState({});
+  const [dataFromCsv, setDataFromCsv] = useState([]);
   const shouldRefresh = false;
   const refreshSeconds = 10;
   let cryptoCurrencies = [];
+
+  const csvData = Object.keys(quantities)?.map(quantity => {
+    return [...[quantity], quantities[quantity].newQuantity];
+  });
 
   const getPrices = () => {
     fetchCryptoData().then(response => {
@@ -29,6 +35,24 @@ const App = () => {
       return () => clearInterval(interval);
     }
   }, []);
+
+  useEffect(() => {
+    let items = {};
+    dataFromCsv.map(item => {
+      const name = Object.keys(item);
+      const quantity = item[name];
+
+      items[name] = {
+        newQuantity: quantity,
+        price: cryptoCurrencies.find(crypto => crypto.name == name)?.price,
+      };
+    });
+    setQuantities(items);
+  }, [dataFromCsv]);
+
+  const resetQuantities = () => {
+    setQuantities({});
+  };
 
   if (!cryptoData.length) {
     return null;
@@ -94,10 +118,15 @@ const App = () => {
 
   return (
     <>
-      <IconButton aria-label='Update Prices' onClick={getPrices}>
-        <RefreshIcon />
-      </IconButton>
+      <Header
+        setDataFromCsv={setDataFromCsv}
+        getPrices={getPrices}
+        resetQuantities={resetQuantities}
+        csvData={csvData}
+      />
       <Row
+        quantities={quantities}
+        setQuantities={setQuantities}
         setVisibleCoins={setVisibleCoins}
         visibleCoins={visibleCoins}
         cryptoCurrencies={sortedCryptosByMarketCap}
