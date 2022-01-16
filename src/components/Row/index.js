@@ -126,11 +126,11 @@ const Row = ({ cryptoCurrencies }) => {
           <DownloadIcon />
         </CSVLink>
       </IconButton>
-      {totalWalletValue > 0 && (
+      {/* {totalWalletValue > 0 && (
         <Typography className={classes.totalWalletValue} variant='h5'>
           {currencyFormatter.format(totalWalletValue)}
         </Typography>
-      )}
+      )} */}
       <List className={classes.root}>
         {sortedCryptoCurrencies?.map(crypto => {
           const { name, originalQuantity } = crypto;
