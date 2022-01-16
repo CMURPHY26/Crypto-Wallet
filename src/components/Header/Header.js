@@ -6,7 +6,10 @@ import React from 'react';
 import { CSVLink } from 'react-csv';
 import CsvReader from '../CsvReader';
 
-const Header = ({ csvData, getPrices, resetQuantities, setDataFromCsv }) => {
+const Header = ({ quantities, getPrices, resetQuantities, setDataFromCsv }) => {
+  const csvData = Object.keys(quantities)?.map(quantity => {
+    return [...[quantity], quantities[quantity].newQuantity];
+  });
   return (
     <>
       <IconButton aria-label='Update Prices' onClick={getPrices}>

@@ -6,16 +6,12 @@ import { cryptoIcons } from './helpers/icons';
 
 const App = () => {
   const [cryptoData, setCryptoData] = useState({});
+  const [dataFromCsv, setDataFromCsv] = useState([]);
   const [visibleCoins, setVisibleCoins] = useState({});
   const [quantities, setQuantities] = useState({});
-  const [dataFromCsv, setDataFromCsv] = useState([]);
   const shouldRefresh = false;
   const refreshSeconds = 10;
   let cryptoCurrencies = [];
-
-  const csvData = Object.keys(quantities)?.map(quantity => {
-    return [...[quantity], quantities[quantity].newQuantity];
-  });
 
   const getPrices = () => {
     fetchCryptoData().then(response => {
@@ -118,10 +114,10 @@ const App = () => {
   return (
     <>
       <Header
+        quantities={quantities}
         setDataFromCsv={setDataFromCsv}
         getPrices={getPrices}
         resetQuantities={resetQuantities}
-        csvData={csvData}
       />
       <Row
         quantities={quantities}
