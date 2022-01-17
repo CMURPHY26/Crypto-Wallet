@@ -3,7 +3,6 @@ import Accordion from '@mui/material/Accordion';
 import List from '@mui/material/List';
 import React, { useEffect, useState } from 'react';
 import { useStyles } from '../../helpers/styleOverrides';
-import { handleItemInLocalStorage, setItemInLocalStorage } from '../../helpers/utils';
 import CollapsedContent from './CollapsedContent';
 import ExpandedContent from './ExpandedContent';
 
@@ -30,14 +29,6 @@ const Row = ({
     setTotalWalletValue(totalSum);
     setSortedCryptoCurrencies(moveOwnedCryptosToTop());
   }, [cryptoCurrencies, quantities]);
-
-  useEffect(() => {
-    handleItemInLocalStorage(setQuantities, 'quantities');
-  }, []);
-
-  useEffect(() => {
-    setItemInLocalStorage('quantities', quantities);
-  }, [quantities]);
 
   const onChangeQuantity = (name, newQuantity) => {
     setQuantities({

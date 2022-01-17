@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import Row from './components/Row';
 import { fetchCryptoData } from './helpers/apis';
 import { cryptoIcons } from './helpers/icons';
+import { handleItemInLocalStorage, setItemInLocalStorage } from './helpers/utils';
 
 const App = () => {
   const [cryptoCurrencies, setCryptoCurrencies] = useState([]);
@@ -18,7 +19,13 @@ const App = () => {
     if (refresh.enabled) {
       autoRefreshPrices();
     }
+
+    handleItemInLocalStorage(setQuantities, 'quantities');
   }, []);
+
+  useEffect(() => {
+    setItemInLocalStorage('quantities', quantities);
+  }, [quantities]);
 
   useEffect(() => {
     syncDataFromCsv();
