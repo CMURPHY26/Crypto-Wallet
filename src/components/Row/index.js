@@ -95,20 +95,20 @@ const Row = ({
               >
                 <CollapsedContent
                   classes={classes}
+                  crypto={crypto}
+                  onChangeQuantity={onChangeQuantity}
                   quantityOwned={quantityOwned}
+                  showCoinToggler={showCoinToggler}
                   showQuantityInput={showQuantityInput}
                   setShowQuantityInput={setShowQuantityInput}
-                  onChangeQuantity={onChangeQuantity}
-                  crypto={crypto}
-                  visibleCoins={visibleCoins}
                   toggleCoinVisibility={toggleCoinVisibility}
-                  showCoinToggler={showCoinToggler}
+                  visibleCoins={visibleCoins}
                 />
                 <ExpandedContent
                   classes={classes}
-                  quantityOwned={quantityOwned}
                   crypto={crypto}
                   onEditIconClick={onEditIconClick}
+                  quantityOwned={quantityOwned}
                 />
               </Accordion>
             </div>
