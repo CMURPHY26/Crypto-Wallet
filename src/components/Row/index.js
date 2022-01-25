@@ -42,18 +42,17 @@ const Row = ({
 
   const moveOwnedCryptosToTop = () => {
     const displayedCryptos = cryptoCurrencies.filter(crypto => !!crypto.visible);
-    const cryptosWithQuantity = displayedCryptos.filter(
-      crypto => quantities[crypto.name]
-    );
-    cryptosWithQuantity.sort(
-      (a, b) =>
-        b.price * quantities[b.name].newQuantity -
-        a.price * quantities[a.name].newQuantity
-    );
+    const sortedCryptosWithQuantity = displayedCryptos
+      .filter(crypto => quantities[crypto.name])
+      .sort(
+        (a, b) =>
+          b.price * quantities[b.name].newQuantity -
+          a.price * quantities[a.name].newQuantity
+      );
     const cryptosWithoutQuantity = displayedCryptos.filter(
       crypto => !quantities[crypto.name]
     );
-    return [...cryptosWithQuantity, ...cryptosWithoutQuantity];
+    return [...sortedCryptosWithQuantity, ...cryptosWithoutQuantity];
   };
 
   const handleChange = panel => (event, isExpanded) => {
@@ -102,7 +101,6 @@ const Row = ({
                   showQuantityInput={showQuantityInput}
                   setShowQuantityInput={setShowQuantityInput}
                   toggleCoinVisibility={toggleCoinVisibility}
-                  visibleCoins={visibleCoins}
                 />
                 <ExpandedContent
                   classes={classes}
